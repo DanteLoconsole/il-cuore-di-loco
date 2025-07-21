@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Dwaal door het historische centrum",
+    "description": "Locorotondo is een doolhof van witgekalkte straatjes, bloeiende balkonnetjes en verborgen pleintjes. Bezoek de Chiesa Madre San Giorgio en ontdek de unieke architectuur van de “cummerse” – de typische puntdaken van het stadje.",
+    "image": "/activities/historisch.jpg"
+  },
+  {
+    "title": "Wijnproeven met uitzicht",
+    "description": "Locorotondo staat bekend om zijn frisse witte DOC-wijn. Bezoek een lokale wijnboerderij zoals Cantina Mir of Cardone voor een proeverij met uitzicht over de vallei. Een zonsondergang-wijnproeverij in de wijngaarden is een absolute aanrader.",
+    "image": "/activities/wijn.jpg"
+  },
+  {
+    "title": "E-bike tours door de vallei",
+    "description": "Verken de glooiende heuvels, trulli en olijfboomgaarden per e-bike. Er zijn prachtige routes richting Alberobello, Martina Franca en Cisternino – allemaal op korte afstand.",
+    "image": "/activities/ebike.jpg"
+  },
+  {
+    "title": "Panoramisch uitzicht vanaf Via Nardelli",
+    "description": "Deze promenade, ook wel het “balkon van de Itria Vallei” genoemd, biedt een adembenemend uitzicht over het landschap. Ideaal voor een avondwandeling bij zonsondergang.",
+    "image": "/activities/via.jpg"
+  },
+  {
+    "title": "Lokale ambachten en markten",
+    "description": "Ontdek handgemaakte keramiek, kantwerk en lokale lekkernijen op de wekelijkse vrijdagmarkt of in kleine boetiekjes in het centrum.",
+    "image": "/activities/keramiek.jpg"
+  },
+  {
+    "title": "Beleef lokale feesten",
+    "description": "In augustus viert Locorotondo het San Rocco Festival met indrukwekkend vuurwerk, muziek en tradities. Een unieke kans om de lokale cultuur van dichtbij te ervaren. Maar ook tijdens kerst verandert het unieke dorpje in een gezellig winter wonderland met feeërieke verlichting en versiering.",
+    "image": "/activities/festival.jpg"
+  },
+  {
+    "title": "Proef de Pugliese keuken",
+    "description": "Geniet van authentieke gerechten in gezellige osteria’s en pizzeria’s. Denk aan orecchiette met ragu, burrata, gegrilde groenten en natuurlijk verse zeevruchten. Breng zeker een bezoek aan restaurants Il Rosone, Il Curdun en Pizerria Casa Pinto.",
+    "image": "/activities/restaurant.jpg"
+  },
+  {
+    "title": "Verken de olijvencultuur",
+    "description": "Wie Puglia zegt, zegt olijvenbomen. Wandel door olijfgaarden, bezichtig de boerderijen en proef de traditionele, kwaliteitsvolle Apulische olijfolie.",
+    "image": "/activities/olives.jpg"
+  }
+]
