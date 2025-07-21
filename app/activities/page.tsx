@@ -44,13 +44,13 @@ export default function ActivitiesPage() {
         <div className="absolute flex justify-between w-[calc(75%+50px)] sm:w-[calc(60%+50px)] min-w-[230px] z-10">
           <button
             onClick={handlePrevious}
-            className="bg-[var(--main)] hover:bg-[var(--main-hover)] focus:bg-[var(--main-hover)] size-[50px] border-none rounded-[50%] cursor-pointer text-[36px]"
+            className="bg-[var(--main)] hover:bg-[var(--main-hover)] size-[50px] border-none rounded-[50%] cursor-pointer text-[36px]"
           >
             <ChevronLeftIcon className="text-white" />
           </button>
           <button
             onClick={handleNext}
-            className="bg-[var(--main)] hover:bg-[var(--main-hover)] focus:bg-[var(--main-hover)] size-[50px] border-none rounded-[50%] cursor-pointer text-[36px]"
+            className="bg-[var(--main)] hover:bg-[var(--main-hover)] size-[50px] border-none rounded-[50%] cursor-pointer text-[36px]"
           >
             <ChevronRightIcon className="text-white" />
           </button>
