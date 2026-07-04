@@ -2,74 +2,63 @@
 
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/auth";
 import { isRangeAvailable, toUTCDate } from "@/lib/availability";
 
-export type BookingState = { error?: string } | undefined;
+export type BookingState = { error?: string; success?: boolean } | undefined;
 
 const dateOnly = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Ongeldige datum.");
 
-const bookingSchema = z.object({
+const requestSchema = z.object({
+  guestName: z.string().trim().min(1, "Naam is verplicht."),
+  email: z.string().trim().email("Ongeldig e-mailadres."),
+  phone: z.string().trim().min(4, "Telefoonnummer is verplicht."),
+  guests: z.coerce.number().int().min(1).max(20),
+  message: z.string().trim().max(1000).optional(),
   checkIn: dateOnly,
   checkOut: dateOnly,
-  guests: z.coerce.number().int().min(1).max(20),
-  notes: z.string().trim().max(500).optional(),
 });
 
-export async function createBooking(
+/** Public — anyone can submit a booking request; the owner approves it later. */
+export async function submitBookingRequest(
   _prev: BookingState,
   formData: FormData
 ): Promise<BookingState> {
-  const session = await auth();
-  if (!session?.user?.id) redirect("/login");
-
-  const parsed = bookingSchema.safeParse({
+  const parsed = requestSchema.safeParse({
+    guestName: formData.get("guestName"),
+    email: formData.get("email"),
+    phone: formData.get("phone"),
+    guests: formData.get("guests"),
+    message: formData.get("message") || undefined,
     checkIn: formData.get("checkIn"),
     checkOut: formData.get("checkOut"),
-    guests: formData.get("guests"),
-    notes: formData.get("notes") || undefined,
   });
   if (!parsed.success) {
-    return { error: "Selecteer geldige data en aantal gasten." };
+    return { error: parsed.error.issues[0].message };
   }
 
   const checkIn = toUTCDate(parsed.data.checkIn);
   const checkOut = toUTCDate(parsed.data.checkOut);
 
+  // Reject dates that are already confirmed/blocked (pending requests don't block).
   if (!(await isRangeAvailable(checkIn, checkOut))) {
     return { error: "Deze data zijn niet (meer) beschikbaar." };
   }
 
   await prisma.booking.create({
     data: {
-      userId: session.user.id,
+      guestName: parsed.data.guestName,
+      email: parsed.data.email,
+      phone: parsed.data.phone,
+      guests: parsed.data.guests,
+      message: parsed.data.message,
       checkIn,
       checkOut,
-      guests: parsed.data.guests,
-      notes: parsed.data.notes,
+      // status defaults to PENDING
     },
   });
 
   revalidatePath("/info");
-  revalidatePath("/account");
-  redirect("/account?booked=1");
-}
-
-export async function cancelMyBooking(formData: FormData): Promise<void> {
-  const session = await auth();
-  if (!session?.user?.id) redirect("/login");
-
-  const id = String(formData.get("id"));
-  const booking = await prisma.booking.findUnique({ where: { id } });
-  if (!booking || booking.userId !== session.user.id) return;
-
-  await prisma.booking.update({
-    where: { id },
-    data: { status: "CANCELLED" },
-  });
-
-  revalidatePath("/account");
-  revalidatePath("/info");
+  revalidatePath("/admin");
+  return { success: true };
 }

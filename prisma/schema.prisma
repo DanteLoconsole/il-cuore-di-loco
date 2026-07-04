@@ -19,29 +19,32 @@ enum Role {
 }
 
 enum BookingStatus {
-  CONFIRMED
-  CANCELLED
+  PENDING // guest submitted a request, awaiting owner decision
+  CONFIRMED // owner accepted → blocks the dates
+  CANCELLED // owner declined/cancelled
 }
 
+// Admin/owner accounts only — guests do not have accounts.
 model User {
-  id           String    @id @default(cuid())
+  id           String   @id @default(cuid())
   name         String
-  email        String    @unique
+  email        String   @unique
   passwordHash String
-  role         Role      @default(GUEST)
-  bookings     Booking[]
-  createdAt    DateTime  @default(now())
+  role         Role     @default(OWNER)
+  createdAt    DateTime @default(now())
 }
 
+// A guest booking request (no account). Captures contact details inline.
 model Booking {
   id        String        @id @default(cuid())
-  user      User          @relation(fields: [userId], references: [id])
-  userId    String
+  guestName String
+  email     String
+  phone     String
   checkIn   DateTime      @db.Date // inclusive check-in
   checkOut  DateTime      @db.Date // exclusive check-out → half-open range [checkIn, checkOut)
   guests    Int           @default(2)
-  status    BookingStatus @default(CONFIRMED)
-  notes     String?
+  message   String?
+  status    BookingStatus @default(PENDING)
   createdAt DateTime      @default(now())
 
   @@index([checkIn, checkOut])

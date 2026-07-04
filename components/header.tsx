@@ -23,7 +23,6 @@ const navLinkClass =
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data: session } = useSession();
-  const isOwner = session?.user?.role === "OWNER";
 
   return (
     <header className="sticky top-0 z-30 w-full border-b border-b-gray-500/30 bg-accent/70 text-header backdrop-blur-xl">
@@ -63,13 +62,8 @@ export default function Header() {
         <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-6">
           {session?.user ? (
             <>
-              {isOwner && (
-                <Link href="/admin" className={navLinkClass}>
-                  Beheer
-                </Link>
-              )}
-              <Link href="/account" className={navLinkClass}>
-                Mijn boekingen
+              <Link href="/admin" className={navLinkClass}>
+                Beheer
               </Link>
               <button
                 type="button"
@@ -80,8 +74,8 @@ export default function Header() {
               </button>
             </>
           ) : (
-            <Link href="/login" className={navLinkClass}>
-              Log in <span aria-hidden="true">&rarr;</span>
+            <Link href="/admin" className={navLinkClass}>
+              Admin <span aria-hidden="true">&rarr;</span>
             </Link>
           )}
         </div>
@@ -135,21 +129,12 @@ export default function Header() {
               <div className="space-y-1 py-6">
                 {session?.user ? (
                   <>
-                    {isOwner && (
-                      <Link
-                        href="/admin"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-header transition-colors hover:bg-main/10 hover:text-main hover:no-underline!"
-                      >
-                        Beheer
-                      </Link>
-                    )}
                     <Link
-                      href="/account"
+                      href="/admin"
                       onClick={() => setMobileMenuOpen(false)}
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-header transition-colors hover:bg-main/10 hover:text-main hover:no-underline!"
                     >
-                      Mijn boekingen
+                      Beheer
                     </Link>
                     <button
                       type="button"
@@ -164,11 +149,11 @@ export default function Header() {
                   </>
                 ) : (
                   <Link
-                    href="/login"
+                    href="/admin"
                     onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-header transition-colors hover:bg-main/10 hover:text-main hover:no-underline!"
                   >
-                    Log in
+                    Admin
                   </Link>
                 )}
               </div>

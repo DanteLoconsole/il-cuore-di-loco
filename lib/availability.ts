@@ -50,7 +50,7 @@ export async function getDisabledRanges(): Promise<DisabledRange[]> {
   return occupied.map(({ start, end }) => ({ from: start, to: addDays(end, -1) }));
 }
 
-/** Server-side re-check used before creating a booking (guards against races). */
+/** Server-side re-check used before creating a booking request. */
 export async function isRangeAvailable(
   checkIn: Date,
   checkOut: Date
@@ -61,6 +61,17 @@ export async function isRangeAvailable(
 
   const occupied = await getOccupiedRanges();
   return !occupied.some(({ start, end }) =>
+    rangesOverlap(checkIn, checkOut, start, end)
+  );
+}
+
+/** Does this range overlap an already-confirmed booking or owner block? */
+export async function hasConflict(
+  checkIn: Date,
+  checkOut: Date
+): Promise<boolean> {
+  const occupied = await getOccupiedRanges();
+  return occupied.some(({ start, end }) =>
     rangesOverlap(checkIn, checkOut, start, end)
   );
 }

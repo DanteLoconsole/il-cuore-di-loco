@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
 import SectionHeading from "@/components/sectionHeading";
 import { Button } from "@/components/ui/button";
 
@@ -13,7 +12,7 @@ const inputClass =
 export default function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
-  const callbackUrl = params.get("callbackUrl") || "/account";
+  const callbackUrl = params.get("callbackUrl") || "/admin";
 
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
@@ -41,7 +40,10 @@ export default function LoginForm() {
 
   return (
     <div className="w-full max-w-md px-6 py-16">
-      <SectionHeading>Inloggen</SectionHeading>
+      <SectionHeading>Beheer</SectionHeading>
+      <p className="mt-4 text-center text-sm text-header/70">
+        Enkel voor beheerders.
+      </p>
 
       <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-4">
         <input
@@ -67,13 +69,6 @@ export default function LoginForm() {
           {pending ? "Bezig…" : "Inloggen"}
         </Button>
       </form>
-
-      <p className="mt-6 text-center text-sm text-header/70">
-        Nog geen account?{" "}
-        <Link href="/register" className="font-semibold text-main">
-          Registreer hier
-        </Link>
-      </p>
     </div>
   );
 }

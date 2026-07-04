@@ -3,9 +3,10 @@
 import { z } from "zod";
 import { addDays } from "date-fns";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
-import { toUTCDate } from "@/lib/availability";
+import { hasConflict, toUTCDate } from "@/lib/availability";
 
 export type AdminState = { error?: string } | undefined;
 
@@ -19,9 +20,28 @@ async function requireOwner() {
 function revalidateBookingViews() {
   revalidatePath("/admin");
   revalidatePath("/info");
-  revalidatePath("/account");
 }
 
+/** Accept a pending request → CONFIRMED (blocks the dates). Guards against conflicts. */
+export async function acceptBooking(formData: FormData): Promise<void> {
+  await requireOwner();
+  const id = String(formData.get("id"));
+
+  const booking = await prisma.booking.findUnique({ where: { id } });
+  if (!booking || booking.status !== "PENDING") return;
+
+  if (await hasConflict(booking.checkIn, booking.checkOut)) {
+    redirect("/admin?conflict=1");
+  }
+
+  await prisma.booking.update({
+    where: { id },
+    data: { status: "CONFIRMED" },
+  });
+  revalidateBookingViews();
+}
+
+/** Decline a pending request or cancel a confirmed booking → CANCELLED. */
 export async function cancelBooking(formData: FormData): Promise<void> {
   await requireOwner();
   const id = String(formData.get("id"));

@@ -1,4 +1,3 @@
-import { auth } from "@/auth";
 import { getDisabledRanges } from "@/lib/availability";
 import BookingForm from "@/components/bookingForm";
 import SectionHeading from "@/components/sectionHeading";
@@ -6,7 +5,6 @@ import SectionHeading from "@/components/sectionHeading";
 export const dynamic = "force-dynamic";
 
 export default async function InfoPage() {
-  const session = await auth();
   const disabledRanges = await getDisabledRanges();
 
   return (
@@ -15,13 +13,13 @@ export default async function InfoPage() {
 
       <div className="mx-auto mb-10 max-w-2xl text-center text-header/80">
         <p>
-          Boek jouw verblijf in Il Cuore di Loco. Kies je aankomst- en
-          vertrekdatum in de kalender hieronder — grijze data zijn niet meer
-          beschikbaar.
+          Kies je aankomst- en vertrekdatum in de kalender — grijze data zijn niet
+          beschikbaar. Vraag daarna vrijblijvend je verblijf aan; we bevestigen je
+          boeking zo snel mogelijk.
         </p>
       </div>
 
-      <BookingForm disabledRanges={disabledRanges} canBook={!!session?.user} />
+      <BookingForm disabledRanges={disabledRanges} />
     </div>
   );
 }
