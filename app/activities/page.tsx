@@ -1,61 +1,49 @@
-"use client";
-
-import { useState } from "react";
+import Image from "next/image";
 import Data from "@/app/activities/data.json";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import SectionHeading from "@/components/sectionHeading";
+import Reveal from "@/components/reveal";
+import ScrollUp from "@/components/scrollUp";
 
 export default function ActivitiesPage() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % Data.length);
-  };
-
-  const handlePrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? Data.length - 1 : prevIndex - 1
-    );
-  };
-
   return (
-    <div className="flex grow flex-col justify-center items-center bg-accent w-full min-h-[140px]">
-      <div
-        className="flex grow flex-col justify-center items-center overflow-hidden w-full bg-cover bg-center"
-        style={{ backgroundImage: `url(${Data[currentIndex].image})` }}
-      >
-        <div className="absolute bg-accent h-[35%] min-h-[122px] w-[75%] sm:w-[60%] min-w-[180px] py-4 px-6 rounded-[20px] shadow-[0_4px_20px_rgba(0,0,0,0.70)] text-center flex flex-col justify-between items-center text-[var(--header)] overflow-scroll">
-          <h1 className="text-[18pt] sm:text-[22pt] md:text-[26pt] lg:text-[30pt] font-bold">
-            {Data[currentIndex].title}
-          </h1>
-          <p className="text-[10pt] sm:text-[12pt] md:text-[13pt] lg:text-[14pt] my-2">
-            {Data[currentIndex].description}
-          </p>
-          <div className="text-white my-1 sm:my-2 md:my-3">
-            <a
-              href="https://pasqua.viaggiareinpuglia.it/en/dettaglio-infopoint/info-point-locorotondo"
-              target="_blank"
-              rel="noreferrer"
-              className="bg-[var(--main)] hover:bg-[var(--main-hover)] rounded-md p-2 sm:px-3 text-[10pt] sm:text-[12pt] no-underline!"
-            >
-              Lees meer
-            </a>
-          </div>
-        </div>
-        <div className="absolute flex justify-between w-[calc(75%+50px)] sm:w-[calc(60%+50px)] min-w-[230px] z-10">
-          <button
-            onClick={handlePrevious}
-            className="bg-[var(--main)] hover:bg-[var(--main-hover)] size-[50px] border-none rounded-[50%] cursor-pointer text-[36px]"
+    <div className="w-full bg-accent px-6 py-16">
+      <SectionHeading className="mb-12">Wat te doen?</SectionHeading>
+
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {Data.map((activity, index) => (
+          <Reveal
+            key={index}
+            delay={(index % 3) * 100}
+            className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-[0_2px_16px_rgba(0,0,0,0.12)] transition-shadow duration-300 hover:shadow-[0_8px_28px_rgba(0,0,0,0.22)]"
           >
-            <ChevronLeftIcon className="text-white" />
-          </button>
-          <button
-            onClick={handleNext}
-            className="bg-[var(--main)] hover:bg-[var(--main-hover)] size-[50px] border-none rounded-[50%] cursor-pointer text-[36px]"
-          >
-            <ChevronRightIcon className="text-white" />
-          </button>
-        </div>
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <Image
+                src={activity.image}
+                alt={activity.title}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div className="flex flex-1 flex-col p-6 text-left">
+              <h3 className="text-lg font-bold text-header">{activity.title}</h3>
+              <p className="mt-3 flex-1 text-sm text-header/70">
+                {activity.description}
+              </p>
+              <a
+                href="https://pasqua.viaggiareinpuglia.it/en/dettaglio-infopoint/info-point-locorotondo"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-5 inline-flex w-fit rounded-md bg-main px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-main-hover hover:no-underline!"
+              >
+                Lees meer
+              </a>
+            </div>
+          </Reveal>
+        ))}
       </div>
+
+      <ScrollUp />
     </div>
   );
 }

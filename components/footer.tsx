@@ -68,13 +68,13 @@ export default function Footer() {
               <span className="sr-only">{item.name}</span>
               <item.icon
                 aria-hidden="true"
-                className="size-6 hover:text-[var(--main)]"
+                className="size-6 transition-colors hover:text-main"
               />
             </a>
           ))}
         </div>
         <p className="mt-8 text-center text-sm/6 md:order-1 md:mt-0">
-          &copy; 2025{" "}
+          &copy; {new Date().getFullYear()}{" "}
           <a
             href="mailto:danteloconsole@gmail.com"
             target="_blank"

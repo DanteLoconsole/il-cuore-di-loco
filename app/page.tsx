@@ -1,96 +1,102 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
 import Script from "next/script";
 import Image from "next/image";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import Data from "@/app/data.json";
+import { Button } from "@/components/ui/button";
+import SectionHeading from "@/components/sectionHeading";
+import Reveal from "@/components/reveal";
 import ScrollUp from "@/components/scrollUp";
 
 export default function HomePage() {
   return (
-    <div className="text-center flex flex-col items-center justify-center w-screen">
-      <section className="h-screen w-full bg-cover bg-center flex justify-center items-start sm:justify-start">
+    <div className="flex w-screen flex-col items-center text-center">
+      {/* Hero */}
+      <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
         <Image
           src="/hero.jpg"
-          alt="Hero Image"
-          className="absolute right-0 inset-0 object-cover w-full h-full object-center"
-          width={1920}
-          height={1080}
+          alt="Uitzicht over Locorotondo"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
         />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Playwrite+HR+Lijeva&display=swap"
-          rel="stylesheet"
-        />
-        <div
-          className="z-5 [font-optical-sizing:auto] bg-accent rounded-[30px] border-[var(--main)] border-5 mt-[4rem] sm:ml-[1rem] px-[1rem] sm:px-[2rem] text-[var(--main)]"
-          style={{ fontFamily: "'Playwrite HR Lijeva', cursive" }}
-        >
-          <h1 className="text-[28pt] sm:text-[32pt] md:text-[36pt] lg:text-[40pt]">
+        {/* Legibility overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40" />
+
+        <div className="relative z-10 mx-4 rounded-[30px] border-4 border-main bg-accent/90 px-6 py-4 shadow-2xl backdrop-blur-sm sm:px-10">
+          <h1 className="font-script text-[28pt] text-main sm:text-[34pt] md:text-[40pt]">
             Il Cuore di Loco
           </h1>
-          <h2 className="text-[12pt] sm:text-[14pt] md:text-[16pt] lg:text-[20pt] mb-[0.5rem]">
+          <h2 className="font-script text-[12pt] text-main sm:text-[16pt] md:text-[20pt]">
             Jouw thuis in het hart van Puglia
           </h2>
         </div>
+
+        <a
+          href="#intro"
+          aria-label="Scroll naar beneden"
+          className="absolute bottom-8 z-10 text-white/90 transition-colors hover:text-white"
+        >
+          <ChevronDownIcon className="size-9 animate-bounce" />
+        </a>
       </section>
 
-      <section className="-mt-4">
-        <div className="mx-12 md:mx-32 text-[var(--main)]">
-          <h2
-            className="text-[24pt] md:text-[28pt]"
-            style={{ fontFamily: "'Playwrite HR Lijeva', cursive" }}
-          >
-            {Data.title}
-          </h2>
-          <p className="text-[40px] md:text-[50px] -mb-6">~</p>
-          {Data.p.map((item, index) => (
-            <p key={index} className="text-[12pt] md:text-[14pt] italic my-6">
-              {item}
-            </p>
-          ))}
-        </div>
+      {/* Intro */}
+      <section id="intro" className="w-full scroll-mt-20 py-20">
+        <Reveal className="mx-auto max-w-3xl px-8">
+          <SectionHeading>{Data.title}</SectionHeading>
+          <div className="mt-8 space-y-6">
+            {Data.p.map((item, index) => (
+              <p key={index} className="text-[12pt] text-header/80 italic md:text-[14pt]">
+                {item}
+              </p>
+            ))}
+          </div>
+        </Reveal>
       </section>
 
-      <section className="mt-12">
-        <div className="flex flex-row justify-center w-[80vw] xl:w-[60vw] border-0 rounded-[15px] shadow-[0_2px_12px_rgba(0,0,0,0.4)] bg-white">
-          <Script src="https://cdn.lightwidget.com/widgets/lightwidget.js" />
-          <iframe
-            src="https://cdn.lightwidget.com/widgets/8ced8ffe07275bcd92b6256e9f70f430.html"
-            className="w-full m-4 border-0 outline-0"
-            scrolling="no"
-          />
-        </div>
+      {/* Instagram */}
+      <section className="w-full pb-20">
+        <Reveal className="mx-auto flex w-[80vw] justify-center xl:w-[60vw]">
+          <div className="w-full overflow-hidden rounded-2xl bg-white p-4 shadow-[0_2px_20px_rgba(0,0,0,0.15)]">
+            <Script src="https://cdn.lightwidget.com/widgets/lightwidget.js" />
+            <iframe
+              title="Instagram"
+              src="https://cdn.lightwidget.com/widgets/8ced8ffe07275bcd92b6256e9f70f430.html"
+              className="w-full border-0 outline-0"
+              scrolling="no"
+            />
+          </div>
+        </Reveal>
       </section>
 
-      <section className="m-16 text-[var(--header)]">
-        <div className="w-full max-w-[600px] text-[1rem] sm:text-[1.2rem]">
-          <p className="font-bold">
-            Op de hoogte blijven via onze nieuwsletter?
+      {/* Newsletter */}
+      <section className="w-full pb-24">
+        <Reveal className="mx-auto w-full max-w-[600px] px-8">
+          <SectionHeading divider={false}>Blijf op de hoogte</SectionHeading>
+          <p className="mt-4 text-header/70">
+            Schrijf je in op onze nieuwsbrief en mis niets.
           </p>
-          <p className="">Schrijf je hier in.</p>
-          <form className="flex flex-col mt-4 gap-4">
+          <form className="mt-6 flex flex-col gap-4 text-left">
             <input
               type="text"
               placeholder="Naam"
               required
-              className="p-2 sm:p-3 border border-[var(--header-opacity)] rounded-xs focus:outline-none bg-white text-[0.8rem] sm:text-[1rem]"
+              className="rounded-md border border-header/20 bg-white p-3 text-[0.95rem] focus:border-main focus:outline-none"
             />
             <input
               type="email"
               placeholder="E-mailadres"
               required
-              className="p-2 sm:p-3 border border-[var(--header-opacity)] rounded-xs focus:outline-none bg-white text-[0.8rem] sm:text-[1rem]"
+              className="rounded-md border border-header/20 bg-white p-3 text-[0.95rem] focus:border-main focus:outline-none"
             />
-            <Button
-              className="bg-[var(--main)] hover:bg-[var(--header)] rounded-xs p-4 sm:p-6 text-[0.8rem] sm:text-[1rem] text-white"
-              type="submit"
-            >
+            <Button type="submit" className="p-4">
               Inschrijven
             </Button>
           </form>
-        </div>
+        </Reveal>
       </section>
+
       <ScrollUp />
     </div>
   );

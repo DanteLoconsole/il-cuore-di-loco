@@ -1,3 +1,5 @@
+"use client";
+
 import ScrollToTop from "react-scroll-to-top";
 import { ArrowUpCircleIcon } from "@heroicons/react/24/outline";
 
