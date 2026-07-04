@@ -1,13 +1,27 @@
-import StatusPage from "@/components/statusPage";
+import { auth } from "@/auth";
+import { getDisabledRanges } from "@/lib/availability";
+import BookingForm from "@/components/bookingForm";
+import SectionHeading from "@/components/sectionHeading";
 
-export default function InfoPage() {
+export const dynamic = "force-dynamic";
+
+export default async function InfoPage() {
+  const session = await auth();
+  const disabledRanges = await getDisabledRanges();
+
   return (
-    <StatusPage
-      code="403"
-      title="Pagina niet toegelaten"
-      description="Sorry, deze pagina zal beschikbaar zijn van zodra reserveren mogelijk is."
-      homeLabel="Terug naar home"
-      supportLabel="Contacteer support"
-    />
+    <div className="w-full bg-accent px-6 py-16">
+      <SectionHeading className="mb-6">Info &amp; boeken</SectionHeading>
+
+      <div className="mx-auto mb-10 max-w-2xl text-center text-header/80">
+        <p>
+          Boek jouw verblijf in Il Cuore di Loco. Kies je aankomst- en
+          vertrekdatum in de kalender hieronder — grijze data zijn niet meer
+          beschikbaar.
+        </p>
+      </div>
+
+      <BookingForm disabledRanges={disabledRanges} canBook={!!session?.user} />
+    </div>
   );
 }

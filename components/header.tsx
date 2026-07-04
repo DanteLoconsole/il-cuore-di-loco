@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,6 +22,8 @@ const navLinkClass =
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { data: session } = useSession();
+  const isOwner = session?.user?.role === "OWNER";
 
   return (
     <header className="sticky top-0 z-30 w-full border-b border-b-gray-500/30 bg-accent/70 text-header backdrop-blur-xl">
@@ -57,10 +60,30 @@ export default function Header() {
             </Link>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="/login" className={navLinkClass}>
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-6">
+          {session?.user ? (
+            <>
+              {isOwner && (
+                <Link href="/admin" className={navLinkClass}>
+                  Beheer
+                </Link>
+              )}
+              <Link href="/account" className={navLinkClass}>
+                Mijn boekingen
+              </Link>
+              <button
+                type="button"
+                onClick={() => signOut({ callbackUrl: "/" })}
+                className={`${navLinkClass} cursor-pointer`}
+              >
+                Log uit
+              </button>
+            </>
+          ) : (
+            <Link href="/login" className={navLinkClass}>
+              Log in <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
         </div>
       </nav>
 
@@ -109,14 +132,45 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-              <div className="py-6">
-                <Link
-                  href="/login"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-header transition-colors hover:bg-main/10 hover:text-main hover:no-underline!"
-                >
-                  Log in
-                </Link>
+              <div className="space-y-1 py-6">
+                {session?.user ? (
+                  <>
+                    {isOwner && (
+                      <Link
+                        href="/admin"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-header transition-colors hover:bg-main/10 hover:text-main hover:no-underline!"
+                      >
+                        Beheer
+                      </Link>
+                    )}
+                    <Link
+                      href="/account"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-header transition-colors hover:bg-main/10 hover:text-main hover:no-underline!"
+                    >
+                      Mijn boekingen
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        signOut({ callbackUrl: "/" });
+                      }}
+                      className="-mx-3 block w-full rounded-lg px-3 py-2.5 text-left text-base/7 font-semibold text-header transition-colors hover:bg-main/10 hover:text-main"
+                    >
+                      Log uit
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    href="/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-header transition-colors hover:bg-main/10 hover:text-main hover:no-underline!"
+                  >
+                    Log in
+                  </Link>
+                )}
               </div>
             </div>
           </div>

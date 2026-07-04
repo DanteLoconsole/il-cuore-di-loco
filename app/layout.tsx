@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playwrite_HR_Lijeva } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -24,11 +25,13 @@ export default function RootLayout({
   return (
     <html lang="nl" className={`${script.variable} min-h-screen`}>
       <body className="flex min-h-screen min-w-[240px] flex-col justify-between bg-accent text-header">
-        <Header />
-        <main className="container flex h-full min-w-full flex-1 flex-col items-center justify-center">
-          {children}
-        </main>
-        <Footer />
+        <SessionProvider>
+          <Header />
+          <main className="container flex h-full min-w-full flex-1 flex-col items-center justify-center">
+            {children}
+          </main>
+          <Footer />
+        </SessionProvider>
       </body>
     </html>
   );

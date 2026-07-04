@@ -1,13 +1,12 @@
-import StatusPage from "@/components/statusPage";
+import { Suspense } from "react";
+import LoginForm from "@/components/loginForm";
 
 export default function LoginPage() {
   return (
-    <StatusPage
-      code="403"
-      title="Pagina niet toegelaten"
-      description="Sorry, deze pagina zal beschikbaar zijn van zodra reserveren mogelijk is."
-      homeLabel="Terug naar home"
-      supportLabel="Contacteer support"
-    />
+    <div className="flex w-full justify-center bg-accent">
+      <Suspense>
+        <LoginForm />
+      </Suspense>
+    </div>
   );
 }
