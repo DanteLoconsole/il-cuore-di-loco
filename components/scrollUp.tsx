@@ -8,7 +8,7 @@ export default function ScrollUp() {
     <ScrollToTop
       smooth
       component={<ArrowUpCircleIcon className="text-white" />}
-      className="bg-[var(--header-opacity)]! hover:bg-[var(--main)]! rounded-4xl! z-20!"
+      className="bg-[#bdbdbd]! hover:bg-[#707070]! rounded-4xl! z-20! transition-colors!"
     />
   );
 }
