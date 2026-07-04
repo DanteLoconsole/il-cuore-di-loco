@@ -11,7 +11,7 @@ export default function HomePage() {
   return (
     <div className="flex w-screen flex-col items-center text-center">
       {/* Hero */}
-      <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
+      <section className="relative flex h-screen w-full items-center justify-center overflow-hidden lg:items-start lg:justify-start">
         <Image
           src="/hero.jpg"
           alt="Uitzicht over Locorotondo"
@@ -23,7 +23,7 @@ export default function HomePage() {
         {/* Legibility overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40" />
 
-        <div className="relative z-10 mx-4 rounded-[30px] border-4 border-main bg-accent/90 px-6 py-4 shadow-2xl backdrop-blur-sm sm:px-10">
+        <div className="relative z-10 mx-4 rounded-[30px] border-4 border-main bg-accent/90 px-6 py-4 shadow-2xl backdrop-blur-sm sm:px-10 lg:mx-0 lg:mt-48 lg:ml-8">
           <h1 className="font-script text-[28pt] text-main sm:text-[34pt] md:text-[40pt]">
             Il Cuore di Loco
           </h1>
@@ -35,7 +35,7 @@ export default function HomePage() {
         <a
           href="#intro"
           aria-label="Scroll naar beneden"
-          className="absolute bottom-8 z-10 text-white/90 transition-colors hover:text-white"
+          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-white/90 transition-colors hover:text-white"
         >
           <ChevronDownIcon className="size-9 animate-bounce" />
         </a>
