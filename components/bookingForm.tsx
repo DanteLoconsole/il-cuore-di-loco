@@ -74,7 +74,14 @@ function makePriceDayButton(
       >
         <span>{children}</span>
         {price !== null && (
-          <span className="text-[9px] leading-none text-main">
+          <span
+            className={cn(
+              "text-[9px] leading-none",
+              // The check-in day gets a solid teal circle with white text.
+              // The checkout day keeps the default color: it's not a paid night.
+              modifiers.range_start ? "text-white" : "text-main"
+            )}
+          >
             {formatMoney(price)}
           </span>
         )}
