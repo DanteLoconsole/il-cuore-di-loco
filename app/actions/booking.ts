@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { isRangeAvailable, toUTCDate } from "@/lib/availability";
 
@@ -24,6 +25,7 @@ export async function submitBookingRequest(
   _prev: BookingState,
   formData: FormData
 ): Promise<BookingState> {
+  const t = await getTranslations("booking");
   const parsed = requestSchema.safeParse({
     guestName: formData.get("guestName"),
     email: formData.get("email"),
@@ -34,7 +36,7 @@ export async function submitBookingRequest(
     checkOut: formData.get("checkOut"),
   });
   if (!parsed.success) {
-    return { error: parsed.error.issues[0].message };
+    return { error: t("errorInvalid") };
   }
 
   const checkIn = toUTCDate(parsed.data.checkIn);
@@ -42,7 +44,7 @@ export async function submitBookingRequest(
 
   // Reject dates that are already confirmed/blocked (pending requests don't block).
   if (!(await isRangeAvailable(checkIn, checkOut))) {
-    return { error: "Deze data zijn niet (meer) beschikbaar." };
+    return { error: t("errorUnavailable") };
   }
 
   await prisma.booking.create({

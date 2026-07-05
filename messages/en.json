@@ -1,0 +1,186 @@
+{
+  "metadata": {
+    "title": "Il Cuore di Loco",
+    "description": "Charming B&B in the heart of Locorotondo, Puglia — with breathtaking views over the Itria Valley."
+  },
+  "nav": {
+    "home": "Home",
+    "info": "Info & booking",
+    "gallery": "Gallery",
+    "story": "Our story",
+    "activities": "What to do?",
+    "contact": "Contact",
+    "admin": "Admin",
+    "manage": "Manage",
+    "logout": "Log out",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "home": {
+    "heroSubtitle": "Your home in the heart of Puglia",
+    "introTitle": "Il Cuore di Loco",
+    "introParagraphs": [
+      "Hidden in the enchanting old centre of Locorotondo, one of the most beautiful towns in Puglia, you'll find our charming B&B Il Cuore di Loco. Here you wake up to a breathtaking view over the Itria Valley – a landscape full of rolling hills, ancient olive trees, vineyards and the iconic trulli that make this region so unique. From our roof terrace you enjoy the calm and beauty of southern Italy, while staying centrally located between gems such as Matera, Alberobello, Monopoli, Martina Franca and Cisternino.",
+      "Our B&B combines authentic charm with modern luxury, so you can fully immerse yourself in the atmosphere of Puglia. Whether you come for culture, gastronomy or simply to relax – at Il Cuore di Loco you feel at home right away.",
+      "Welcome to the heart of Locorotondo. Welcome to the heart of Puglia."
+    ],
+    "scrollDown": "Scroll down",
+    "newsletterHeading": "Stay up to date",
+    "newsletterText": "Subscribe to our newsletter and don't miss a thing."
+  },
+  "newsletter": {
+    "name": "Name",
+    "email": "Email address",
+    "submit": "Subscribe",
+    "submitting": "Working…",
+    "success": "Thank you for subscribing!",
+    "invalidEmail": "Invalid email address."
+  },
+  "activities": {
+    "heading": "What to do?",
+    "readMore": "Read more",
+    "items": [
+      {
+        "title": "Wander through the historic centre",
+        "description": "Locorotondo is a maze of whitewashed streets, blooming balconies and hidden little squares. Visit the Chiesa Madre San Giorgio and discover the unique architecture of the “cummerse” – the town's characteristic pointed roofs."
+      },
+      {
+        "title": "Wine tasting with a view",
+        "description": "Locorotondo is known for its crisp white DOC wine. Visit a local winery such as Cantina Mir or Cardone for a tasting overlooking the valley. A sunset wine tasting among the vineyards is an absolute must."
+      },
+      {
+        "title": "E-bike tours through the valley",
+        "description": "Explore the rolling hills, trulli and olive groves by e-bike. There are beautiful routes towards Alberobello, Martina Franca and Cisternino – all just a short distance away."
+      },
+      {
+        "title": "Panoramic view from Via Nardelli",
+        "description": "This promenade, also called the “balcony of the Itria Valley”, offers a breathtaking view over the landscape. Ideal for an evening stroll at sunset."
+      },
+      {
+        "title": "Local crafts and markets",
+        "description": "Discover handmade ceramics, lacework and local delicacies at the weekly Friday market or in the small boutiques in the centre."
+      },
+      {
+        "title": "Experience local festivals",
+        "description": "In August, Locorotondo celebrates the San Rocco Festival with impressive fireworks, music and traditions. A unique chance to experience the local culture up close. And at Christmas too, the charming village turns into a cosy winter wonderland with magical lights and decorations."
+      },
+      {
+        "title": "Taste the Pugliese cuisine",
+        "description": "Enjoy authentic dishes in cosy osterias and pizzerias. Think orecchiette with ragù, burrata, grilled vegetables and, of course, fresh seafood. Be sure to visit the restaurants Il Rosone, Il Curdun and Pizzeria Casa Pinto."
+      },
+      {
+        "title": "Explore the olive culture",
+        "description": "Say Puglia, and you say olive trees. Walk through olive groves, visit the farms and taste the traditional, high-quality Apulian olive oil."
+      }
+    ]
+  },
+  "story": {
+    "heading": "Our Story",
+    "imageAlt": "Story",
+    "items": [
+      {
+        "date": "1948",
+        "sentence": "Our grandparents left their beloved Puglia to build a new life in Belgium."
+      },
+      {
+        "date": "1950s/60s",
+        "sentence": "Nonno worked in the coal mine of Beringen, while Nonna took care of the family."
+      },
+      {
+        "date": "1950s/60s",
+        "sentence": "With their two sons, Leo and Franco, they brought the warmth and flavours of Italy home with them."
+      },
+      {
+        "date": "1980s/90s",
+        "sentence": "Every summer we returned to their native region, where their roots lie."
+      },
+      {
+        "date": "July 2018",
+        "sentence": "Years later we rediscovered Puglia with our own children, and fell in love all over again with this enchanting corner of Italy."
+      },
+      {
+        "date": "03/03/2025 - ...",
+        "sentence": "Today we want to share that passion with you. Welcome to our B&B, where we'd love to help you discover the most beautiful spots of the boot."
+      }
+    ]
+  },
+  "gallery": {
+    "heading": "Gallery",
+    "picturesBy": "Pictures by"
+  },
+  "contact": {
+    "heading": "Contact us",
+    "intro": "For questions about bookings or your stay, feel free to get in touch.",
+    "addressLabel": "Address",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "mapTitle": "Map"
+  },
+  "info": {
+    "heading": "Info & booking",
+    "intro": "Choose your arrival and departure dates in the calendar — greyed-out dates are unavailable. Then send a no-obligation request; we'll confirm your booking as soon as possible."
+  },
+  "booking": {
+    "selectDates": "Select your arrival and departure dates in the calendar.",
+    "nights": "{count, plural, one {# night} other {# nights}}: {range}",
+    "request": "Request Now",
+    "name": "Name",
+    "email": "Email address",
+    "phone": "Phone number",
+    "guests": "Number of guests",
+    "message": "Extra information or requests (optional)",
+    "submit": "Send",
+    "submitting": "Working…",
+    "successTitle": "Thank you for your request!",
+    "successText": "We've received your request and will get in touch as soon as possible to confirm your booking.",
+    "errorInvalid": "Please select valid dates and number of guests.",
+    "errorUnavailable": "These dates are no longer available."
+  },
+  "login": {
+    "heading": "Admin",
+    "subtitle": "For administrators only.",
+    "email": "Email address",
+    "password": "Password",
+    "submit": "Log in",
+    "submitting": "Working…",
+    "error": "Email address or password is incorrect."
+  },
+  "footer": {
+    "rights": "© {year} <link>Dante Loconsole</link>, Inc. All rights reserved."
+  },
+  "status": {
+    "notFoundTitle": "Page not found",
+    "notFoundText": "Sorry, we couldn't find the page you're looking for.",
+    "goHome": "Go back home",
+    "contactSupport": "Contact support"
+  },
+  "admin": {
+    "heading": "Manage",
+    "conflict": "This request overlaps with an already-confirmed booking and could not be accepted.",
+    "requests": "Requests ({count})",
+    "noRequests": "No open requests.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "guestsCount": "{count, plural, one {# guest} other {# guests}}",
+    "confirmed": "Confirmed bookings ({count})",
+    "noConfirmed": "No confirmed bookings yet.",
+    "cancel": "Cancel",
+    "blockedDates": "Blocked dates",
+    "noBlocked": "No blocked periods.",
+    "unblock": "Unblock",
+    "newsletterHeading": "Newsletter ({count, plural, one {# subscriber} other {# subscribers}})",
+    "noSubscribers": "No subscriptions yet.",
+    "sendNewsletter": "Send Newsletter",
+    "newsletterSubject": "Newsletter Il Cuore di Loco",
+    "cancelledHeading": "Declined / cancelled ({count})",
+    "block": {
+      "from": "From (first night)",
+      "to": "To (last night)",
+      "reason": "Reason (optional)",
+      "submit": "Block dates",
+      "submitting": "Working…",
+      "errorInvalid": "Please check the entered dates.",
+      "errorEndBeforeStart": "The end date must be on or after the start date."
+    }
+  }
+}

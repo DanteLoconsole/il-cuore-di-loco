@@ -1,22 +1,26 @@
 "use client";
 
-import Data from "@/app/story/data.json";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { storyPictures } from "@/lib/content";
 import SectionHeading from "@/components/sectionHeading";
 import ScrollUp from "@/components/scrollUp";
 
 export default function StoryPage() {
+  const t = useTranslations("story");
+  const items = t.raw("items") as { date: string; sentence: string }[];
+
   return (
     <div className="flex min-h-screen w-full flex-col items-center bg-accent px-4 py-16">
-      <SectionHeading className="mb-8">{Data.title}</SectionHeading>
+      <SectionHeading className="mb-8">{t("heading")}</SectionHeading>
 
       <VerticalTimeline lineColor="#389f98">
-        {Data.story.map((sentence, key) => (
+        {items.map((entry, key) => (
           <VerticalTimelineElement
             key={key}
             contentStyle={{
@@ -31,7 +35,7 @@ export default function StoryPage() {
               justifyContent: "center",
             }}
             contentArrowStyle={{ borderRight: "7px solid white" }}
-            date={sentence.date}
+            date={entry.date}
             iconStyle={{
               background: "#389f98",
               backgroundImage: "url(/logo.svg)",
@@ -44,12 +48,12 @@ export default function StoryPage() {
             }}
           >
             <p className="m-0! mb-4! text-center text-header/80">
-              {sentence.sentence}
+              {entry.sentence}
             </p>
             <div className="w-full max-w-[300px] overflow-hidden rounded-xl">
               <Image
-                src={sentence.picture}
-                alt="Story"
+                src={storyPictures[key]}
+                alt={t("imageAlt")}
                 width={600}
                 height={600}
                 className="h-auto w-full object-cover"

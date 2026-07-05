@@ -4,6 +4,7 @@ import { useActionState, useState } from "react";
 import { DayPicker, type DateRange } from "react-day-picker";
 import "react-day-picker/style.css";
 import { differenceInCalendarDays, format } from "date-fns";
+import { useTranslations } from "next-intl";
 import {
   submitBookingRequest,
   type BookingState,
@@ -24,6 +25,7 @@ const inputClass =
   "rounded-md border border-header/20 bg-white p-3 text-[0.95rem] focus:border-main focus:outline-none";
 
 export default function BookingForm({ disabledRanges }: Props) {
+  const t = useTranslations("booking");
   const [state, formAction, pending] = useActionState<BookingState, FormData>(
     submitBookingRequest,
     undefined
@@ -46,11 +48,8 @@ export default function BookingForm({ disabledRanges }: Props) {
   if (state?.success) {
     return (
       <div className="mx-auto max-w-md rounded-2xl bg-white p-8 text-center shadow-[0_2px_16px_rgba(0,0,0,0.12)]">
-        <p className="text-lg font-semibold text-main">Bedankt voor je aanvraag!</p>
-        <p className="mt-3 text-header/70">
-          We hebben je aanvraag goed ontvangen en nemen zo snel mogelijk contact
-          met je op om de boeking te bevestigen.
-        </p>
+        <p className="text-lg font-semibold text-main">{t("successTitle")}</p>
+        <p className="mt-3 text-header/70">{t("successText")}</p>
       </div>
     );
   }
@@ -78,8 +77,8 @@ export default function BookingForm({ disabledRanges }: Props) {
 
         <p className="text-center text-sm text-header/70">
           {valid
-            ? `${nights} ${nights > 1 ? "nachten" : "nacht"}: ${checkIn} → ${checkOut}`
-            : "Selecteer je aankomst- en vertrekdatum in de kalender."}
+            ? t("nights", { count: nights, range: `${checkIn} → ${checkOut}` })
+            : t("selectDates")}
         </p>
 
         {!showForm ? (
@@ -89,14 +88,14 @@ export default function BookingForm({ disabledRanges }: Props) {
             onClick={() => setShowForm(true)}
             className="p-4"
           >
-            Vraag Nu Aan
+            {t("request")}
           </Button>
         ) : (
           <>
             <input
               type="text"
               name="guestName"
-              placeholder="Naam"
+              placeholder={t("name")}
               autoComplete="name"
               required
               className={inputClass}
@@ -104,7 +103,7 @@ export default function BookingForm({ disabledRanges }: Props) {
             <input
               type="email"
               name="email"
-              placeholder="E-mailadres"
+              placeholder={t("email")}
               autoComplete="email"
               required
               className={inputClass}
@@ -112,13 +111,13 @@ export default function BookingForm({ disabledRanges }: Props) {
             <input
               type="tel"
               name="phone"
-              placeholder="Telefoonnummer"
+              placeholder={t("phone")}
               autoComplete="tel"
               required
               className={inputClass}
             />
             <label className="flex items-center justify-between gap-4 text-sm">
-              <span>Aantal personen</span>
+              <span>{t("guests")}</span>
               <input
                 type="number"
                 name="guests"
@@ -131,14 +130,14 @@ export default function BookingForm({ disabledRanges }: Props) {
             <textarea
               name="message"
               rows={3}
-              placeholder="Extra informatie of vragen (optioneel)"
+              placeholder={t("message")}
               className={inputClass}
             />
 
             {state?.error && <p className="text-sm text-red-600">{state.error}</p>}
 
             <Button type="submit" disabled={!valid || pending} className="p-4">
-              {pending ? "Bezig…" : "Inzenden"}
+              {pending ? t("submitting") : t("submit")}
             </Button>
           </>
         )}

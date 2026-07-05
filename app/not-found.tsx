@@ -1,13 +1,8 @@
-import StatusPage from "@/components/statusPage";
+import { redirect } from "next/navigation";
+import { routing } from "@/i18n/routing";
 
-export default function NotFoundPage() {
-  return (
-    <StatusPage
-      code="404"
-      title="Page not found"
-      description="Sorry, we couldn't find the page you're looking for."
-      homeLabel="Go back home"
-      supportLabel="Contact support"
-    />
-  );
+// Global fallback for paths outside any locale. The middleware normally rewrites
+// unprefixed paths, so this is a rare last resort — forward to the default locale.
+export default function GlobalNotFound() {
+  redirect(`/${routing.defaultLocale}`);
 }

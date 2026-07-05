@@ -2,13 +2,14 @@
 
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 
 export type NewsletterState = { error?: string; success?: boolean } | undefined;
 
 const schema = z.object({
   name: z.string().trim().max(100).optional(),
-  email: z.string().trim().email("Ongeldig e-mailadres."),
+  email: z.string().trim().email(),
 });
 
 /** Public — capture a newsletter sign-up. Idempotent for already-subscribed emails. */
@@ -21,7 +22,8 @@ export async function subscribeNewsletter(
     email: formData.get("email"),
   });
   if (!parsed.success) {
-    return { error: parsed.error.issues[0].message };
+    const t = await getTranslations("newsletter");
+    return { error: t("invalidEmail") };
   }
 
   const { name, email } = parsed.data;

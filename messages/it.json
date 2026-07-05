@@ -1,0 +1,186 @@
+{
+  "metadata": {
+    "title": "Il Cuore di Loco",
+    "description": "Affascinante B&B nel cuore di Locorotondo, Puglia — con una vista mozzafiato sulla Valle d'Itria."
+  },
+  "nav": {
+    "home": "Home",
+    "info": "Info e prenotazioni",
+    "gallery": "Galleria",
+    "story": "La nostra storia",
+    "activities": "Cosa fare?",
+    "contact": "Contatti",
+    "admin": "Admin",
+    "manage": "Gestione",
+    "logout": "Esci",
+    "openMenu": "Apri menu",
+    "closeMenu": "Chiudi menu"
+  },
+  "home": {
+    "heroSubtitle": "La tua casa nel cuore della Puglia",
+    "introTitle": "Il Cuore di Loco",
+    "introParagraphs": [
+      "Nascosto nell'incantevole centro storico di Locorotondo, uno dei borghi più belli della Puglia, trovi il nostro affascinante B&B Il Cuore di Loco. Qui ti svegli con una vista mozzafiato sulla Valle d'Itria – un paesaggio di dolci colline, ulivi secolari, vigneti e i caratteristici trulli che rendono questa terra così unica. Dalla nostra terrazza sul tetto godi della quiete e della bellezza del Sud Italia, pur rimanendo in posizione centrale tra gioielli come Matera, Alberobello, Monopoli, Martina Franca e Cisternino.",
+      "Il nostro B&B unisce il fascino autentico al comfort moderno, così puoi immergerti completamente nell'atmosfera della Puglia. Che tu venga per la cultura, la gastronomia o semplicemente per rilassarti – a Il Cuore di Loco ti sentirai subito a casa.",
+      "Benvenuto nel cuore di Locorotondo. Benvenuto nel cuore della Puglia."
+    ],
+    "scrollDown": "Scorri verso il basso",
+    "newsletterHeading": "Resta aggiornato",
+    "newsletterText": "Iscriviti alla nostra newsletter e non perderti nulla."
+  },
+  "newsletter": {
+    "name": "Nome",
+    "email": "Indirizzo email",
+    "submit": "Iscriviti",
+    "submitting": "Attendere…",
+    "success": "Grazie per l'iscrizione!",
+    "invalidEmail": "Indirizzo email non valido."
+  },
+  "activities": {
+    "heading": "Cosa fare?",
+    "readMore": "Scopri di più",
+    "items": [
+      {
+        "title": "Passeggia nel centro storico",
+        "description": "Locorotondo è un labirinto di viuzze imbiancate a calce, balconi fioriti e piazzette nascoste. Visita la Chiesa Madre di San Giorgio e scopri l'architettura unica delle “cummerse” – i tipici tetti a punta del paese."
+      },
+      {
+        "title": "Degustazione di vini con vista",
+        "description": "Locorotondo è famosa per il suo fresco vino bianco DOC. Visita una cantina locale come Cantina Mir o Cardone per una degustazione con vista sulla valle. Una degustazione al tramonto tra i vigneti è assolutamente da non perdere."
+      },
+      {
+        "title": "Tour in e-bike nella valle",
+        "description": "Esplora le dolci colline, i trulli e gli uliveti in e-bike. Ci sono splendidi percorsi verso Alberobello, Martina Franca e Cisternino – tutti a breve distanza."
+      },
+      {
+        "title": "Vista panoramica da Via Nardelli",
+        "description": "Questa passeggiata, chiamata anche il “balcone della Valle d'Itria”, offre una vista mozzafiato sul paesaggio. Ideale per una passeggiata serale al tramonto."
+      },
+      {
+        "title": "Artigianato e mercati locali",
+        "description": "Scopri ceramiche fatte a mano, merletti e prelibatezze locali al mercato settimanale del venerdì o nelle piccole botteghe del centro."
+      },
+      {
+        "title": "Vivi le feste locali",
+        "description": "Ad agosto Locorotondo celebra la Festa di San Rocco con spettacolari fuochi d'artificio, musica e tradizioni. Un'occasione unica per vivere da vicino la cultura locale. Ma anche a Natale il caratteristico borgo si trasforma in un accogliente paese delle meraviglie invernale, con luci e decorazioni fiabesche."
+      },
+      {
+        "title": "Assapora la cucina pugliese",
+        "description": "Gusta piatti autentici in accoglienti osterie e pizzerie. Pensa alle orecchiette al ragù, alla burrata, alle verdure grigliate e naturalmente al pesce fresco. Non perdere i ristoranti Il Rosone, Il Curdun e Pizzeria Casa Pinto."
+      },
+      {
+        "title": "Scopri la cultura dell'olio",
+        "description": "Dire Puglia significa dire ulivi. Cammina tra gli uliveti, visita le masserie e assaggia il tradizionale olio d'oliva pugliese di alta qualità."
+      }
+    ]
+  },
+  "story": {
+    "heading": "La Nostra Storia",
+    "imageAlt": "Storia",
+    "items": [
+      {
+        "date": "1948",
+        "sentence": "I nostri nonni lasciarono la loro amata Puglia per costruire una nuova vita in Belgio."
+      },
+      {
+        "date": "anni '50/'60",
+        "sentence": "Il Nonno lavorava nella miniera di carbone di Beringen, mentre la Nonna si occupava della famiglia."
+      },
+      {
+        "date": "anni '50/'60",
+        "sentence": "Con i loro due figli, Leo e Franco, portarono a casa il calore e i sapori dell'Italia."
+      },
+      {
+        "date": "anni '80/'90",
+        "sentence": "Ogni estate tornavamo nella loro terra natale, dove affondano le loro radici."
+      },
+      {
+        "date": "luglio 2018",
+        "sentence": "Anni dopo riscoprimmo la Puglia con i nostri figli, e ci innamorammo di nuovo di questo angolo incantevole d'Italia."
+      },
+      {
+        "date": "03/03/2025 - ...",
+        "sentence": "Oggi vogliamo condividere questa passione con voi. Benvenuti nel nostro B&B, dove saremo felici di farvi scoprire i luoghi più belli dello Stivale."
+      }
+    ]
+  },
+  "gallery": {
+    "heading": "Galleria",
+    "picturesBy": "Foto di"
+  },
+  "contact": {
+    "heading": "Contattaci",
+    "intro": "Per domande su prenotazioni o soggiorno, non esitare a contattarci.",
+    "addressLabel": "Indirizzo",
+    "phoneLabel": "Telefono",
+    "emailLabel": "Email",
+    "mapTitle": "Mappa"
+  },
+  "info": {
+    "heading": "Info e prenotazioni",
+    "intro": "Scegli le date di arrivo e partenza nel calendario — le date in grigio non sono disponibili. Poi invia una richiesta senza impegno; confermeremo la tua prenotazione il prima possibile."
+  },
+  "booking": {
+    "selectDates": "Seleziona le date di arrivo e partenza nel calendario.",
+    "nights": "{count, plural, one {# notte} other {# notti}}: {range}",
+    "request": "Richiedi Ora",
+    "name": "Nome",
+    "email": "Indirizzo email",
+    "phone": "Numero di telefono",
+    "guests": "Numero di persone",
+    "message": "Informazioni o richieste aggiuntive (facoltativo)",
+    "submit": "Invia",
+    "submitting": "Attendere…",
+    "successTitle": "Grazie per la tua richiesta!",
+    "successText": "Abbiamo ricevuto la tua richiesta e ti contatteremo il prima possibile per confermare la prenotazione.",
+    "errorInvalid": "Seleziona date e numero di persone validi.",
+    "errorUnavailable": "Queste date non sono più disponibili."
+  },
+  "login": {
+    "heading": "Gestione",
+    "subtitle": "Solo per amministratori.",
+    "email": "Indirizzo email",
+    "password": "Password",
+    "submit": "Accedi",
+    "submitting": "Attendere…",
+    "error": "Indirizzo email o password non corretti."
+  },
+  "footer": {
+    "rights": "© {year} <link>Dante Loconsole</link>, Inc. Tutti i diritti riservati."
+  },
+  "status": {
+    "notFoundTitle": "Pagina non trovata",
+    "notFoundText": "Spiacenti, non abbiamo trovato la pagina che cerchi.",
+    "goHome": "Torna alla home",
+    "contactSupport": "Contatta il supporto"
+  },
+  "admin": {
+    "heading": "Gestione",
+    "conflict": "Questa richiesta si sovrappone a una prenotazione già confermata e non è stato possibile accettarla.",
+    "requests": "Richieste ({count})",
+    "noRequests": "Nessuna richiesta in sospeso.",
+    "accept": "Accetta",
+    "decline": "Rifiuta",
+    "guestsCount": "{count, plural, one {# persona} other {# persone}}",
+    "confirmed": "Prenotazioni confermate ({count})",
+    "noConfirmed": "Ancora nessuna prenotazione confermata.",
+    "cancel": "Annulla",
+    "blockedDates": "Date bloccate",
+    "noBlocked": "Nessun periodo bloccato.",
+    "unblock": "Sblocca",
+    "newsletterHeading": "Newsletter ({count, plural, one {# iscritto} other {# iscritti}})",
+    "noSubscribers": "Ancora nessuna iscrizione.",
+    "sendNewsletter": "Invia Newsletter",
+    "newsletterSubject": "Newsletter Il Cuore di Loco",
+    "cancelledHeading": "Rifiutate / annullate ({count})",
+    "block": {
+      "from": "Da (prima notte)",
+      "to": "A (ultima notte)",
+      "reason": "Motivo (facoltativo)",
+      "submit": "Blocca date",
+      "submitting": "Attendere…",
+      "errorInvalid": "Controlla le date inserite.",
+      "errorEndBeforeStart": "La data di fine deve essere uguale o successiva alla data di inizio."
+    }
+  }
+}

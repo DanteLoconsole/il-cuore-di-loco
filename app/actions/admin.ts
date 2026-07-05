@@ -4,6 +4,7 @@ import { z } from "zod";
 import { addDays } from "date-fns";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { getTranslations, getLocale } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { hasConflict, toUTCDate } from "@/lib/availability";
@@ -31,7 +32,8 @@ export async function acceptBooking(formData: FormData): Promise<void> {
   if (!booking || booking.status !== "PENDING") return;
 
   if (await hasConflict(booking.checkIn, booking.checkOut)) {
-    redirect("/admin?conflict=1");
+    const locale = await getLocale();
+    redirect(`/${locale}/admin?conflict=1`);
   }
 
   await prisma.booking.update({
@@ -64,6 +66,7 @@ export async function blockDates(
   formData: FormData
 ): Promise<AdminState> {
   await requireOwner();
+  const t = await getTranslations("admin.block");
 
   const parsed = blockSchema.safeParse({
     start: formData.get("start"),
@@ -71,7 +74,7 @@ export async function blockDates(
     reason: formData.get("reason") || undefined,
   });
   if (!parsed.success) {
-    return { error: "Controleer de ingevulde data." };
+    return { error: t("errorInvalid") };
   }
 
   const startDate = toUTCDate(parsed.data.start);
@@ -79,7 +82,7 @@ export async function blockDates(
   // with the half-open ranges used everywhere else.
   const endDate = addDays(toUTCDate(parsed.data.end), 1);
   if (startDate >= endDate) {
-    return { error: "De einddatum moet op of na de startdatum liggen." };
+    return { error: t("errorEndBeforeStart") };
   }
 
   await prisma.blockedRange.create({

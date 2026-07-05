@@ -1,0 +1,186 @@
+{
+  "metadata": {
+    "title": "Il Cuore di Loco",
+    "description": "Charmante B&B in het hart van Locorotondo, Puglia — met adembenemend uitzicht over de Itria Vallei."
+  },
+  "nav": {
+    "home": "Home",
+    "info": "Info & boeken",
+    "gallery": "Galerij",
+    "story": "Verhaal",
+    "activities": "Wat te doen?",
+    "contact": "Contact",
+    "admin": "Admin",
+    "manage": "Beheer",
+    "logout": "Log uit",
+    "openMenu": "Open menu",
+    "closeMenu": "Sluit menu"
+  },
+  "home": {
+    "heroSubtitle": "Jouw thuis in het hart van Puglia",
+    "introTitle": "Il Cuore di Loco",
+    "introParagraphs": [
+      "Verborgen in het betoverende oude centrum van Locorotondo, een van de mooiste stadjes van Puglia, vind je onze charmante B&B Il Cuore di Loco. Hier word je wakker met een adembenemend uitzicht over de Itria Vallei – een landschap vol glooiende heuvels, eeuwenoude olijfbomen, wijngaarden en de iconische trulli die deze streek zo uniek maken. Vanaf ons dakterras geniet je van de rust en schoonheid van het zuiden van Italië, terwijl je toch centraal verblijft tussen parels als Matera, Alberobello, Monopoli, Martina Franca en Cisternino.",
+      "Onze B&B combineert authentieke charme met moderne luxe, zodat je volledig kunt opgaan in de sfeer van Puglia. Of je nu komt voor cultuur, gastronomie of gewoon om te ontspannen – bij Il Cuore di Loco voel je je meteen thuis.",
+      "Welkom in het hart van Locorotondo. Welkom in het hart van Puglia."
+    ],
+    "scrollDown": "Scroll naar beneden",
+    "newsletterHeading": "Blijf op de hoogte",
+    "newsletterText": "Schrijf je in op onze nieuwsbrief en mis niets."
+  },
+  "newsletter": {
+    "name": "Naam",
+    "email": "E-mailadres",
+    "submit": "Inschrijven",
+    "submitting": "Bezig…",
+    "success": "Bedankt voor je inschrijving!",
+    "invalidEmail": "Ongeldig e-mailadres."
+  },
+  "activities": {
+    "heading": "Wat te doen?",
+    "readMore": "Lees meer",
+    "items": [
+      {
+        "title": "Dwaal door het historische centrum",
+        "description": "Locorotondo is een doolhof van witgekalkte straatjes, bloeiende balkonnetjes en verborgen pleintjes. Bezoek de Chiesa Madre San Giorgio en ontdek de unieke architectuur van de “cummerse” – de typische puntdaken van het stadje."
+      },
+      {
+        "title": "Wijnproeven met uitzicht",
+        "description": "Locorotondo staat bekend om zijn frisse witte DOC-wijn. Bezoek een lokale wijnboerderij zoals Cantina Mir of Cardone voor een proeverij met uitzicht over de vallei. Een zonsondergang-wijnproeverij in de wijngaarden is een absolute aanrader."
+      },
+      {
+        "title": "E-bike tours door de vallei",
+        "description": "Verken de glooiende heuvels, trulli en olijfboomgaarden per e-bike. Er zijn prachtige routes richting Alberobello, Martina Franca en Cisternino – allemaal op korte afstand."
+      },
+      {
+        "title": "Panoramisch uitzicht vanaf Via Nardelli",
+        "description": "Deze promenade, ook wel het “balkon van de Itria Vallei” genoemd, biedt een adembenemend uitzicht over het landschap. Ideaal voor een avondwandeling bij zonsondergang."
+      },
+      {
+        "title": "Lokale ambachten en markten",
+        "description": "Ontdek handgemaakte keramiek, kantwerk en lokale lekkernijen op de wekelijkse vrijdagmarkt of in kleine boetiekjes in het centrum."
+      },
+      {
+        "title": "Beleef lokale feesten",
+        "description": "In augustus viert Locorotondo het San Rocco Festival met indrukwekkend vuurwerk, muziek en tradities. Een unieke kans om de lokale cultuur van dichtbij te ervaren. Maar ook tijdens kerst verandert het unieke dorpje in een gezellig winter wonderland met feeërieke verlichting en versiering."
+      },
+      {
+        "title": "Proef de Pugliese keuken",
+        "description": "Geniet van authentieke gerechten in gezellige osteria’s en pizzeria’s. Denk aan orecchiette met ragu, burrata, gegrilde groenten en natuurlijk verse zeevruchten. Breng zeker een bezoek aan restaurants Il Rosone, Il Curdun en Pizerria Casa Pinto."
+      },
+      {
+        "title": "Verken de olijvencultuur",
+        "description": "Wie Puglia zegt, zegt olijvenbomen. Wandel door olijfgaarden, bezichtig de boerderijen en proef de traditionele, kwaliteitsvolle Apulische olijfolie."
+      }
+    ]
+  },
+  "story": {
+    "heading": "Ons Verhaal",
+    "imageAlt": "Verhaal",
+    "items": [
+      {
+        "date": "1948",
+        "sentence": "Onze grootouders verlieten hun geliefde Puglia om in België een nieuw leven op te bouwen."
+      },
+      {
+        "date": "jaren 50/60",
+        "sentence": "Nonno werkte in de koolmijn van Beringen, terwijl Nonna zorgde voor het gezin."
+      },
+      {
+        "date": "jaren 50/60",
+        "sentence": "Met hun twee zonen, Leo en Franco, brachten ze de warmte en smaken van Italië mee naar huis."
+      },
+      {
+        "date": "jaren 80/90",
+        "sentence": "Elke zomer keerden we terug naar hun geboortestreek, waar hun roots liggen."
+      },
+      {
+        "date": "juli 2018",
+        "sentence": "Jaren later herontdekten we Puglia met onze eigen kinderen, en werden opnieuw verliefd op dit betoverende stukje Italië."
+      },
+      {
+        "date": "03/03/2025 - ...",
+        "sentence": "Vandaag willen we die passie met jullie delen. Welkom in onze B&B, waar we jullie graag de mooiste plekjes van de laars laten ontdekken."
+      }
+    ]
+  },
+  "gallery": {
+    "heading": "Galerij",
+    "picturesBy": "Foto's door"
+  },
+  "contact": {
+    "heading": "Contacteer ons",
+    "intro": "Met vragen over boekingen of het verblijf, contacteer ons gerust.",
+    "addressLabel": "Adres",
+    "phoneLabel": "Telefoon",
+    "emailLabel": "E-mail",
+    "mapTitle": "Kaart"
+  },
+  "info": {
+    "heading": "Info & boeken",
+    "intro": "Kies je aankomst- en vertrekdatum in de kalender — grijze data zijn niet beschikbaar. Vraag daarna vrijblijvend je verblijf aan; we bevestigen je boeking zo snel mogelijk."
+  },
+  "booking": {
+    "selectDates": "Selecteer je aankomst- en vertrekdatum in de kalender.",
+    "nights": "{count, plural, one {# nacht} other {# nachten}}: {range}",
+    "request": "Vraag Nu Aan",
+    "name": "Naam",
+    "email": "E-mailadres",
+    "phone": "Telefoonnummer",
+    "guests": "Aantal personen",
+    "message": "Extra informatie of vragen (optioneel)",
+    "submit": "Inzenden",
+    "submitting": "Bezig…",
+    "successTitle": "Bedankt voor je aanvraag!",
+    "successText": "We hebben je aanvraag goed ontvangen en nemen zo snel mogelijk contact met je op om de boeking te bevestigen.",
+    "errorInvalid": "Selecteer geldige data en aantal gasten.",
+    "errorUnavailable": "Deze data zijn niet (meer) beschikbaar."
+  },
+  "login": {
+    "heading": "Beheer",
+    "subtitle": "Enkel voor beheerders.",
+    "email": "E-mailadres",
+    "password": "Wachtwoord",
+    "submit": "Inloggen",
+    "submitting": "Bezig…",
+    "error": "E-mailadres of wachtwoord is onjuist."
+  },
+  "footer": {
+    "rights": "© {year} <link>Dante Loconsole</link>, Inc. Alle rechten voorbehouden."
+  },
+  "status": {
+    "notFoundTitle": "Pagina niet gevonden",
+    "notFoundText": "Sorry, we konden de pagina die je zoekt niet vinden.",
+    "goHome": "Terug naar home",
+    "contactSupport": "Contacteer support"
+  },
+  "admin": {
+    "heading": "Beheer",
+    "conflict": "Deze aanvraag overlapt met een reeds bevestigde boeking en kon niet worden geaccepteerd.",
+    "requests": "Aanvragen ({count})",
+    "noRequests": "Geen openstaande aanvragen.",
+    "accept": "Accepteren",
+    "decline": "Weigeren",
+    "guestsCount": "{count, plural, one {# persoon} other {# personen}}",
+    "confirmed": "Bevestigde boekingen ({count})",
+    "noConfirmed": "Nog geen bevestigde boekingen.",
+    "cancel": "Annuleren",
+    "blockedDates": "Geblokkeerde data",
+    "noBlocked": "Geen geblokkeerde periodes.",
+    "unblock": "Deblokkeren",
+    "newsletterHeading": "Nieuwsbrief ({count, plural, one {# inschrijving} other {# inschrijvingen}})",
+    "noSubscribers": "Nog geen inschrijvingen.",
+    "sendNewsletter": "Zend Nieuwsbrief Uit",
+    "newsletterSubject": "Nieuwsbrief Il Cuore di Loco",
+    "cancelledHeading": "Geweigerd / geannuleerd ({count})",
+    "block": {
+      "from": "Van (eerste nacht)",
+      "to": "Tot (laatste nacht)",
+      "reason": "Reden (optioneel)",
+      "submit": "Data blokkeren",
+      "submitting": "Bezig…",
+      "errorInvalid": "Controleer de ingevulde data.",
+      "errorEndBeforeStart": "De einddatum moet op of na de startdatum liggen."
+    }
+  }
+}

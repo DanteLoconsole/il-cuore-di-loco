@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { useTranslations } from "next-intl";
 import { blockDates, type AdminState } from "@/app/actions/admin";
 import { Button } from "@/components/ui/button";
 
@@ -8,6 +9,7 @@ const inputClass =
   "rounded-md border border-header/20 bg-white p-2 text-sm focus:border-main focus:outline-none";
 
 export default function BlockDatesForm() {
+  const t = useTranslations("admin.block");
   const [state, formAction, pending] = useActionState<AdminState, FormData>(
     blockDates,
     undefined
@@ -20,25 +22,25 @@ export default function BlockDatesForm() {
     >
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <label className="flex flex-col gap-1 text-sm">
-          <span className="text-header/70">Van (eerste nacht)</span>
+          <span className="text-header/70">{t("from")}</span>
           <input type="date" name="start" required className={inputClass} />
         </label>
         <label className="flex flex-col gap-1 text-sm">
-          <span className="text-header/70">Tot (laatste nacht)</span>
+          <span className="text-header/70">{t("to")}</span>
           <input type="date" name="end" required className={inputClass} />
         </label>
       </div>
       <input
         type="text"
         name="reason"
-        placeholder="Reden (optioneel)"
+        placeholder={t("reason")}
         className={inputClass}
       />
 
       {state?.error && <p className="text-sm text-red-600">{state.error}</p>}
 
       <Button type="submit" disabled={pending} className="self-start px-5 py-2">
-        {pending ? "Bezig…" : "Data blokkeren"}
+        {pending ? t("submitting") : t("submit")}
       </Button>
     </form>
   );

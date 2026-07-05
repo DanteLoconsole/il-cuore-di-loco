@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import SectionHeading from "@/components/sectionHeading";
 import { Button } from "@/components/ui/button";
 
@@ -10,9 +11,12 @@ const inputClass =
   "rounded-md border border-header/20 bg-white p-3 text-[0.95rem] focus:border-main focus:outline-none";
 
 export default function LoginForm() {
+  const t = useTranslations("login");
+  const locale = useLocale();
   const router = useRouter();
   const params = useSearchParams();
-  const callbackUrl = params.get("callbackUrl") || "/admin";
+  // callbackUrl is a fully-localized path (e.g. /nl/admin) so we don't re-prefix.
+  const callbackUrl = params.get("callbackUrl") || `/${locale}/admin`;
 
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
@@ -31,7 +35,7 @@ export default function LoginForm() {
 
     setPending(false);
     if (res?.error) {
-      setError("E-mailadres of wachtwoord is onjuist.");
+      setError(t("error"));
       return;
     }
     router.push(callbackUrl);
@@ -40,16 +44,14 @@ export default function LoginForm() {
 
   return (
     <div className="w-full max-w-md px-6 py-16">
-      <SectionHeading>Beheer</SectionHeading>
-      <p className="mt-4 text-center text-sm text-header/70">
-        Enkel voor beheerders.
-      </p>
+      <SectionHeading>{t("heading")}</SectionHeading>
+      <p className="mt-4 text-center text-sm text-header/70">{t("subtitle")}</p>
 
       <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-4">
         <input
           type="email"
           name="email"
-          placeholder="E-mailadres"
+          placeholder={t("email")}
           autoComplete="email"
           required
           className={inputClass}
@@ -57,7 +59,7 @@ export default function LoginForm() {
         <input
           type="password"
           name="password"
-          placeholder="Wachtwoord"
+          placeholder={t("password")}
           autoComplete="current-password"
           required
           className={inputClass}
@@ -66,7 +68,7 @@ export default function LoginForm() {
         {error && <p className="text-sm text-red-600">{error}</p>}
 
         <Button type="submit" disabled={pending} className="p-4">
-          {pending ? "Bezig…" : "Inloggen"}
+          {pending ? t("submitting") : t("submit")}
         </Button>
       </form>
     </div>

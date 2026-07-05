@@ -1,20 +1,29 @@
 import Script from "next/script";
 import Image from "next/image";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import Data from "@/app/data.json";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import SectionHeading from "@/components/sectionHeading";
 import Reveal from "@/components/reveal";
 import ScrollUp from "@/components/scrollUp";
 import NewsletterForm from "@/components/newsletterForm";
 
-export default function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("home");
+  const paragraphs = t.raw("introParagraphs") as string[];
+
   return (
     <div className="flex w-screen flex-col items-center text-center">
       {/* Hero */}
       <section className="relative flex h-screen w-full items-center justify-center overflow-hidden lg:items-start lg:justify-start">
         <Image
           src="/hero.jpg"
-          alt="Uitzicht over Locorotondo"
+          alt="Locorotondo"
           fill
           priority
           sizes="100vw"
@@ -28,13 +37,13 @@ export default function HomePage() {
             Il Cuore di Loco
           </h1>
           <h2 className="font-script text-[12pt] text-main sm:text-[16pt] md:text-[20pt]">
-            Jouw thuis in het hart van Puglia
+            {t("heroSubtitle")}
           </h2>
         </div>
 
         <a
           href="#intro"
-          aria-label="Scroll naar beneden"
+          aria-label={t("scrollDown")}
           className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-white/90 transition-colors hover:text-white"
         >
           <ChevronDownIcon className="size-9 animate-bounce" />
@@ -44,10 +53,13 @@ export default function HomePage() {
       {/* Intro */}
       <section id="intro" className="w-full scroll-mt-20 py-20">
         <Reveal className="mx-auto max-w-3xl px-8">
-          <SectionHeading>{Data.title}</SectionHeading>
+          <SectionHeading>{t("introTitle")}</SectionHeading>
           <div className="mt-8 space-y-6">
-            {Data.p.map((item, index) => (
-              <p key={index} className="text-[12pt] text-header/80 italic md:text-[14pt]">
+            {paragraphs.map((item, index) => (
+              <p
+                key={index}
+                className="text-[12pt] text-header/80 italic md:text-[14pt]"
+              >
                 {item}
               </p>
             ))}
@@ -73,10 +85,10 @@ export default function HomePage() {
       {/* Newsletter */}
       <section className="w-full pb-24">
         <Reveal className="mx-auto w-full max-w-[600px] px-8">
-          <SectionHeading divider={false}>Blijf op de hoogte</SectionHeading>
-          <p className="mt-4 text-header/70">
-            Schrijf je in op onze nieuwsbrief en mis niets.
-          </p>
+          <SectionHeading divider={false}>
+            {t("newsletterHeading")}
+          </SectionHeading>
+          <p className="mt-4 text-header/70">{t("newsletterText")}</p>
           <NewsletterForm />
         </Reveal>
       </section>

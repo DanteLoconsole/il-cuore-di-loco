@@ -1,16 +1,26 @@
 import Image from "next/image";
-import Data from "@/app/activities/data.json";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { activityImages, activitiesInfoLink } from "@/lib/content";
 import SectionHeading from "@/components/sectionHeading";
 import Reveal from "@/components/reveal";
 import ScrollUp from "@/components/scrollUp";
 
-export default function ActivitiesPage() {
+export default async function ActivitiesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("activities");
+  const items = t.raw("items") as { title: string; description: string }[];
+
   return (
     <div className="w-full bg-accent px-6 py-16">
-      <SectionHeading className="mb-12">Wat te doen?</SectionHeading>
+      <SectionHeading className="mb-12">{t("heading")}</SectionHeading>
 
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {Data.map((activity, index) => (
+        {items.map((activity, index) => (
           <Reveal
             key={index}
             delay={(index % 3) * 100}
@@ -18,7 +28,7 @@ export default function ActivitiesPage() {
           >
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src={activity.image}
+                src={activityImages[index]}
                 alt={activity.title}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -31,12 +41,12 @@ export default function ActivitiesPage() {
                 {activity.description}
               </p>
               <a
-                href="https://pasqua.viaggiareinpuglia.it/en/dettaglio-infopoint/info-point-locorotondo"
+                href={activitiesInfoLink}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-5 inline-flex w-fit rounded-md bg-main px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-main-hover hover:no-underline!"
               >
-                Lees meer
+                {t("readMore")}
               </a>
             </div>
           </Reveal>
