@@ -134,7 +134,11 @@
     "successTitle": "Bedankt voor je aanvraag!",
     "successText": "We hebben je aanvraag goed ontvangen en nemen zo snel mogelijk contact met je op om de boeking te bevestigen.",
     "errorInvalid": "Selecteer geldige data en aantal gasten.",
-    "errorUnavailable": "Deze data zijn niet (meer) beschikbaar."
+    "errorUnavailable": "Deze data zijn niet (meer) beschikbaar.",
+    "priceSummaryHeading": "Prijsoverzicht",
+    "nightsCount": "{count, plural, one {# nacht} other {# nachten}}",
+    "cleaningFeeLabel": "Schoonmaakkosten",
+    "totalLabel": "Totaal"
   },
   "login": {
     "heading": "Beheer",
@@ -181,6 +185,29 @@
       "submitting": "Bezig…",
       "errorInvalid": "Controleer de ingevulde data.",
       "errorEndBeforeStart": "De einddatum moet op of na de startdatum liggen."
+    },
+    "pricing": {
+      "heading": "Prijzen",
+      "baseNightlyPrice": "Basisprijs per nacht (€)",
+      "weekendSurchargePercent": "Weekendtoeslag (%)",
+      "cleaningFee": "Schoonmaakkosten (€)",
+      "save": "Opslaan",
+      "submitting": "Bezig…",
+      "errorInvalid": "Controleer de ingevulde waarden.",
+      "errorEndBeforeStart": "De einddatum moet op of na de startdatum liggen.",
+      "surchargePeriods": "Toeslagperiodes",
+      "noSurchargePeriods": "Geen toeslagperiodes ingesteld.",
+      "from": "Van (eerste nacht)",
+      "to": "Tot (laatste nacht)",
+      "surchargePercent": "Toeslag (%)",
+      "periodLabel": "Naam (optioneel, bv. Hoogseizoen)",
+      "addPeriod": "Periode toevoegen",
+      "priceOverrides": "Individuele prijsaanpassingen",
+      "noPriceOverrides": "Geen aangepaste prijzen ingesteld.",
+      "overrideDate": "Datum",
+      "overridePrice": "Prijs (€)",
+      "addOverride": "Prijs toevoegen",
+      "remove": "Verwijderen"
     }
   }
 }

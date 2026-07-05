@@ -134,7 +134,11 @@
     "successTitle": "Thank you for your request!",
     "successText": "We've received your request and will get in touch as soon as possible to confirm your booking.",
     "errorInvalid": "Please select valid dates and number of guests.",
-    "errorUnavailable": "These dates are no longer available."
+    "errorUnavailable": "These dates are no longer available.",
+    "priceSummaryHeading": "Price summary",
+    "nightsCount": "{count, plural, one {# night} other {# nights}}",
+    "cleaningFeeLabel": "Cleaning fee",
+    "totalLabel": "Total"
   },
   "login": {
     "heading": "Admin",
@@ -181,6 +185,29 @@
       "submitting": "Working…",
       "errorInvalid": "Please check the entered dates.",
       "errorEndBeforeStart": "The end date must be on or after the start date."
+    },
+    "pricing": {
+      "heading": "Pricing",
+      "baseNightlyPrice": "Base price per night (€)",
+      "weekendSurchargePercent": "Weekend surcharge (%)",
+      "cleaningFee": "Cleaning fee (€)",
+      "save": "Save",
+      "submitting": "Working…",
+      "errorInvalid": "Please check the entered values.",
+      "errorEndBeforeStart": "The end date must be on or after the start date.",
+      "surchargePeriods": "Surcharge periods",
+      "noSurchargePeriods": "No surcharge periods set.",
+      "from": "From (first night)",
+      "to": "To (last night)",
+      "surchargePercent": "Surcharge (%)",
+      "periodLabel": "Label (optional, e.g. High season)",
+      "addPeriod": "Add period",
+      "priceOverrides": "Individual price overrides",
+      "noPriceOverrides": "No price overrides set.",
+      "overrideDate": "Date",
+      "overridePrice": "Price (€)",
+      "addOverride": "Add price",
+      "remove": "Remove"
     }
   }
 }

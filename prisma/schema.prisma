@@ -66,3 +66,31 @@ model BlockedRange {
   reason    String?
   createdAt DateTime @default(now())
 }
+
+// Singleton (id is always 1) holding the base pricing knobs. Self-initializes
+// with defaults on first read — see lib/pricing.ts.
+model PricingSettings {
+  id                      Int      @id @default(1)
+  baseNightlyPrice        Int // whole euros, e.g. 100
+  weekendSurchargePercent Int // e.g. 10 — applies Fri & Sat nights
+  cleaningFee             Int // whole euros, e.g. 50
+  updatedAt               DateTime @updatedAt
+}
+
+// Owner-defined surcharge window (e.g. high season, holidays). Percentages
+// stack multiplicatively with the weekend surcharge and with each other.
+model SurchargePeriod {
+  id        String   @id @default(cuid())
+  startDate DateTime @db.Date // inclusive
+  endDate   DateTime @db.Date // exclusive — half-open, same convention as BlockedRange
+  percent   Int // e.g. 20 for +20%
+  label     String?
+  createdAt DateTime @default(now())
+}
+
+// Exact nightly price for one specific date — always wins over the computed price.
+model PriceOverride {
+  id    String   @id @default(cuid())
+  date  DateTime @unique @db.Date
+  price Int
+}

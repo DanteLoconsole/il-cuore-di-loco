@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { getDisabledRanges } from "@/lib/availability";
+import { getPricingData } from "@/lib/pricing";
 import BookingForm from "@/components/bookingForm";
 import SectionHeading from "@/components/sectionHeading";
 
@@ -7,7 +8,10 @@ export const dynamic = "force-dynamic";
 
 export default async function InfoPage() {
   const t = await getTranslations("info");
-  const disabledRanges = await getDisabledRanges();
+  const [disabledRanges, pricing] = await Promise.all([
+    getDisabledRanges(),
+    getPricingData(),
+  ]);
 
   return (
     <div className="w-full bg-accent px-6 py-16">
@@ -17,7 +21,7 @@ export default async function InfoPage() {
         <p>{t("intro")}</p>
       </div>
 
-      <BookingForm disabledRanges={disabledRanges} />
+      <BookingForm disabledRanges={disabledRanges} pricing={pricing} />
     </div>
   );
 }

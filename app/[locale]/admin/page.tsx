@@ -1,10 +1,15 @@
 import { addDays } from "date-fns";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getFormatter } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { formatDate } from "@/lib/availability";
+import { getPricingData } from "@/lib/pricing";
 import { acceptBooking, cancelBooking, unblockDates } from "@/app/actions/admin";
+import { removeSurchargePeriod, removePriceOverride } from "@/app/actions/pricing";
 import SectionHeading from "@/components/sectionHeading";
 import BlockDatesForm from "@/components/blockDatesForm";
+import PricingSettingsForm from "@/components/pricingSettingsForm";
+import SurchargePeriodForm from "@/components/surchargePeriodForm";
+import PriceOverrideForm from "@/components/priceOverrideForm";
 
 export const dynamic = "force-dynamic";
 
@@ -63,12 +68,19 @@ export default async function AdminPage({
 }) {
   const { conflict } = await searchParams;
   const t = await getTranslations("admin");
+  const format = await getFormatter();
+  const money = (value: number) =>
+    format.number(value, { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
 
-  const [bookings, blocks, subscribers] = await Promise.all([
-    prisma.booking.findMany({ orderBy: { createdAt: "desc" } }),
-    prisma.blockedRange.findMany({ orderBy: { startDate: "asc" } }),
-    prisma.newsletterSubscriber.findMany({ orderBy: { createdAt: "desc" } }),
-  ]);
+  const [bookings, blocks, subscribers, pricing, surchargePeriods, priceOverrides] =
+    await Promise.all([
+      prisma.booking.findMany({ orderBy: { createdAt: "desc" } }),
+      prisma.blockedRange.findMany({ orderBy: { startDate: "asc" } }),
+      prisma.newsletterSubscriber.findMany({ orderBy: { createdAt: "desc" } }),
+      getPricingData(),
+      prisma.surchargePeriod.findMany({ orderBy: { startDate: "asc" } }),
+      prisma.priceOverride.findMany({ orderBy: { date: "asc" } }),
+    ]);
 
   // "Send newsletter" opens the mail app with every subscriber in BCC and no
   // visible To. The From address is whatever account the mail app sends as; a
@@ -191,6 +203,83 @@ export default async function AdminPage({
             ))}
           </div>
           <BlockDatesForm />
+        </section>
+
+        {/* Pricing */}
+        <section>
+          <h3 className="mb-4 text-lg font-bold text-header">
+            {t("pricing.heading")}
+          </h3>
+          <div className="flex flex-col gap-6">
+            <PricingSettingsForm config={pricing.config} />
+
+            <div>
+              <h4 className="mb-3 text-sm font-semibold text-header/70">
+                {t("pricing.surchargePeriods")}
+              </h4>
+              <div className="mb-4 flex flex-col gap-3">
+                {surchargePeriods.length === 0 && (
+                  <p className="text-header/70">{t("pricing.noSurchargePeriods")}</p>
+                )}
+                {surchargePeriods.map((s) => (
+                  <div
+                    key={s.id}
+                    className="flex items-center justify-between rounded-2xl bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
+                  >
+                    <p className="text-header">
+                      <span className="font-semibold">
+                        {formatDate(s.startDate)} → {formatDate(addDays(s.endDate, -1))}
+                      </span>{" "}
+                      <span className="text-main">+{s.percent}%</span>
+                      {s.label && <span className="text-header/60"> · {s.label}</span>}
+                    </p>
+                    <form action={removeSurchargePeriod}>
+                      <input type="hidden" name="id" value={s.id} />
+                      <button
+                        type="submit"
+                        className={`${btnClass} hover:border-red-400 hover:text-red-600`}
+                      >
+                        {t("pricing.remove")}
+                      </button>
+                    </form>
+                  </div>
+                ))}
+              </div>
+              <SurchargePeriodForm />
+            </div>
+
+            <div>
+              <h4 className="mb-3 text-sm font-semibold text-header/70">
+                {t("pricing.priceOverrides")}
+              </h4>
+              <div className="mb-4 flex flex-col gap-3">
+                {priceOverrides.length === 0 && (
+                  <p className="text-header/70">{t("pricing.noPriceOverrides")}</p>
+                )}
+                {priceOverrides.map((o) => (
+                  <div
+                    key={o.id}
+                    className="flex items-center justify-between rounded-2xl bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
+                  >
+                    <p className="text-header">
+                      <span className="font-semibold">{formatDate(o.date)}</span>{" "}
+                      <span className="text-main">{money(o.price)}</span>
+                    </p>
+                    <form action={removePriceOverride}>
+                      <input type="hidden" name="id" value={o.id} />
+                      <button
+                        type="submit"
+                        className={`${btnClass} hover:border-red-400 hover:text-red-600`}
+                      >
+                        {t("pricing.remove")}
+                      </button>
+                    </form>
+                  </div>
+                ))}
+              </div>
+              <PriceOverrideForm />
+            </div>
+          </div>
         </section>
 
         {/* Newsletter */}

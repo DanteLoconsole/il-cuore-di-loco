@@ -134,7 +134,11 @@
     "successTitle": "Grazie per la tua richiesta!",
     "successText": "Abbiamo ricevuto la tua richiesta e ti contatteremo il prima possibile per confermare la prenotazione.",
     "errorInvalid": "Seleziona date e numero di persone validi.",
-    "errorUnavailable": "Queste date non sono più disponibili."
+    "errorUnavailable": "Queste date non sono più disponibili.",
+    "priceSummaryHeading": "Riepilogo prezzo",
+    "nightsCount": "{count, plural, one {# notte} other {# notti}}",
+    "cleaningFeeLabel": "Costo di pulizia",
+    "totalLabel": "Totale"
   },
   "login": {
     "heading": "Gestione",
@@ -181,6 +185,29 @@
       "submitting": "Attendere…",
       "errorInvalid": "Controlla le date inserite.",
       "errorEndBeforeStart": "La data di fine deve essere uguale o successiva alla data di inizio."
+    },
+    "pricing": {
+      "heading": "Prezzi",
+      "baseNightlyPrice": "Prezzo base a notte (€)",
+      "weekendSurchargePercent": "Supplemento weekend (%)",
+      "cleaningFee": "Costo di pulizia (€)",
+      "save": "Salva",
+      "submitting": "Attendere…",
+      "errorInvalid": "Controlla i valori inseriti.",
+      "errorEndBeforeStart": "La data di fine deve essere uguale o successiva alla data di inizio.",
+      "surchargePeriods": "Periodi con supplemento",
+      "noSurchargePeriods": "Nessun periodo con supplemento impostato.",
+      "from": "Da (prima notte)",
+      "to": "A (ultima notte)",
+      "surchargePercent": "Supplemento (%)",
+      "periodLabel": "Etichetta (facoltativo, es. Alta stagione)",
+      "addPeriod": "Aggiungi periodo",
+      "priceOverrides": "Prezzi personalizzati",
+      "noPriceOverrides": "Nessun prezzo personalizzato impostato.",
+      "overrideDate": "Data",
+      "overridePrice": "Prezzo (€)",
+      "addOverride": "Aggiungi prezzo",
+      "remove": "Rimuovi"
     }
   }
 }
