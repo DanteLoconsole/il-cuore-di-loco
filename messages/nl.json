@@ -138,6 +138,7 @@
     "priceSummaryHeading": "Prijsoverzicht",
     "nightsCount": "{count, plural, one {# nacht} other {# nachten}}",
     "cleaningFeeLabel": "Schoonmaakkosten",
+    "touristTaxLabel": "Toeristenbelasting",
     "totalLabel": "Totaal"
   },
   "login": {
@@ -191,6 +192,7 @@
       "baseNightlyPrice": "Basisprijs per nacht (€)",
       "weekendSurchargePercent": "Weekendtoeslag (%)",
       "cleaningFee": "Schoonmaakkosten (€)",
+      "touristTaxPerPerson": "Toeristenbelasting p.p.p.n. (€)",
       "save": "Opslaan",
       "submitting": "Bezig…",
       "errorInvalid": "Controleer de ingevulde waarden.",

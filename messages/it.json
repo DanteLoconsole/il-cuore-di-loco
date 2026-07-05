@@ -138,6 +138,7 @@
     "priceSummaryHeading": "Riepilogo prezzo",
     "nightsCount": "{count, plural, one {# notte} other {# notti}}",
     "cleaningFeeLabel": "Costo di pulizia",
+    "touristTaxLabel": "Tassa di soggiorno",
     "totalLabel": "Totale"
   },
   "login": {
@@ -191,6 +192,7 @@
       "baseNightlyPrice": "Prezzo base a notte (€)",
       "weekendSurchargePercent": "Supplemento weekend (%)",
       "cleaningFee": "Costo di pulizia (€)",
+      "touristTaxPerPerson": "Tassa di soggiorno p.p.a.n. (€)",
       "save": "Salva",
       "submitting": "Attendere…",
       "errorInvalid": "Controlla i valori inseriti.",

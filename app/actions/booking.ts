@@ -14,7 +14,7 @@ const requestSchema = z.object({
   guestName: z.string().trim().min(1, "Naam is verplicht."),
   email: z.string().trim().email("Ongeldig e-mailadres."),
   phone: z.string().trim().min(4, "Telefoonnummer is verplicht."),
-  guests: z.coerce.number().int().min(1).max(20),
+  guests: z.coerce.number().int().min(1).max(3),
   message: z.string().trim().max(1000).optional(),
   checkIn: dateOnly,
   checkOut: dateOnly,

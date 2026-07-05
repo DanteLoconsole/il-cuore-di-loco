@@ -26,6 +26,7 @@ const settingsSchema = z.object({
   baseNightlyPrice: z.coerce.number().int().min(0),
   weekendSurchargePercent: z.coerce.number().int().min(0).max(500),
   cleaningFee: z.coerce.number().int().min(0),
+  touristTaxPerPerson: z.coerce.number().min(0),
 });
 
 export async function updatePricingSettings(
@@ -39,6 +40,7 @@ export async function updatePricingSettings(
     baseNightlyPrice: formData.get("baseNightlyPrice"),
     weekendSurchargePercent: formData.get("weekendSurchargePercent"),
     cleaningFee: formData.get("cleaningFee"),
+    touristTaxPerPerson: formData.get("touristTaxPerPerson"),
   });
   if (!parsed.success) {
     return { error: t("errorInvalid") };

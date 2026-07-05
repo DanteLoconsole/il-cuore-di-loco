@@ -138,6 +138,7 @@
     "priceSummaryHeading": "Price summary",
     "nightsCount": "{count, plural, one {# night} other {# nights}}",
     "cleaningFeeLabel": "Cleaning fee",
+    "touristTaxLabel": "Tourist tax",
     "totalLabel": "Total"
   },
   "login": {
@@ -191,6 +192,7 @@
       "baseNightlyPrice": "Base price per night (€)",
       "weekendSurchargePercent": "Weekend surcharge (%)",
       "cleaningFee": "Cleaning fee (€)",
+      "touristTaxPerPerson": "Tourist tax p.p.p.n. (€)",
       "save": "Save",
       "submitting": "Working…",
       "errorInvalid": "Please check the entered values.",

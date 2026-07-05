@@ -9,6 +9,7 @@ const DEFAULT_PRICING: PricingConfig = {
   baseNightlyPrice: 100,
   weekendSurchargePercent: 10,
   cleaningFee: 50,
+  touristTaxPerPerson: 1.5,
 };
 
 /** Reads the singleton pricing settings row, creating it with defaults on first use. */
@@ -22,6 +23,7 @@ async function getPricingConfig(): Promise<PricingConfig> {
     baseNightlyPrice: settings.baseNightlyPrice,
     weekendSurchargePercent: settings.weekendSurchargePercent,
     cleaningFee: settings.cleaningFee,
+    touristTaxPerPerson: settings.touristTaxPerPerson,
   };
 }
 

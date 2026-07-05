@@ -28,7 +28,7 @@ export default function PricingSettingsForm({
       action={formAction}
       className="flex flex-col gap-3 rounded-2xl bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
     >
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <label className="flex flex-col gap-1 text-sm">
           <span className="text-header/70">{t("baseNightlyPrice")}</span>
           <input
@@ -58,6 +58,18 @@ export default function PricingSettingsForm({
             name="cleaningFee"
             min={0}
             defaultValue={config.cleaningFee}
+            required
+            className={inputClass}
+          />
+        </label>
+        <label className="flex flex-col gap-1 text-sm">
+          <span className="text-header/70">{t("touristTaxPerPerson")}</span>
+          <input
+            type="number"
+            name="touristTaxPerPerson"
+            min={0}
+            step={0.01}
+            defaultValue={config.touristTaxPerPerson}
             required
             className={inputClass}
           />

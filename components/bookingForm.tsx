@@ -40,6 +40,8 @@ const calendarStyle = {
 const inputClass =
   "rounded-md border border-header/20 bg-white p-3 text-[0.95rem] focus:border-main focus:outline-none";
 
+const MAX_GUESTS = 3;
+
 function makePriceDayButton(
   pricing: Props["pricing"],
   formatMoney: (value: number) => string
@@ -93,14 +95,23 @@ function makePriceDayButton(
 export default function BookingForm({ disabledRanges, pricing }: Props) {
   const t = useTranslations("booking");
   const format2 = useFormatter();
+  // minimumFractionDigits: 0 keeps whole-euro amounts clean (e.g. "€100")
+  // while still showing cents when the tourist tax makes a total fractional
+  // (e.g. "€4.50").
   const money = (value: number) =>
-    format2.number(value, { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+    format2.number(value, {
+      style: "currency",
+      currency: "EUR",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
+    });
 
   const [state, formAction, pending] = useActionState<BookingState, FormData>(
     submitBookingRequest,
     undefined
   );
   const [range, setRange] = useState<DateRange | undefined>();
+  const [guests, setGuests] = useState(2);
   const [showForm, setShowForm] = useState(false);
 
   const today = new Date();
@@ -120,6 +131,7 @@ export default function BookingForm({ disabledRanges, pricing }: Props) {
       ? computeStayTotal(
           range.from,
           range.to,
+          guests,
           pricing.config,
           pricing.surcharges,
           pricing.overrides
@@ -156,6 +168,23 @@ export default function BookingForm({ disabledRanges, pricing }: Props) {
 
         <div className="w-full max-w-xs rounded-2xl bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.12)]">
           <h3 className="mb-3 font-bold text-header">{t("priceSummaryHeading")}</h3>
+
+          <label className="mb-3 flex items-center justify-between gap-4 text-sm text-header/80">
+            <span>{t("guests")}</span>
+            <input
+              type="number"
+              min={1}
+              max={MAX_GUESTS}
+              value={guests}
+              onChange={(e) =>
+                setGuests(
+                  Math.min(MAX_GUESTS, Math.max(1, Number(e.target.value) || 1))
+                )
+              }
+              className="w-20 rounded-md border border-header/20 bg-white p-2 focus:border-main focus:outline-none"
+            />
+          </label>
+
           {stayTotal ? (
             <div className="flex flex-col gap-2 text-sm text-header/80">
               <div className="flex justify-between">
@@ -165,6 +194,10 @@ export default function BookingForm({ disabledRanges, pricing }: Props) {
               <div className="flex justify-between">
                 <span>{t("cleaningFeeLabel")}</span>
                 <span>{money(stayTotal.cleaningFee)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>{t("touristTaxLabel")}</span>
+                <span>{money(stayTotal.touristTax)}</span>
               </div>
               <div className="mt-2 flex justify-between border-t border-header/10 pt-2 font-bold text-header">
                 <span>{t("totalLabel")}</span>
@@ -180,6 +213,7 @@ export default function BookingForm({ disabledRanges, pricing }: Props) {
       <form action={formAction} className="flex w-full max-w-md flex-col gap-4">
         <input type="hidden" name="checkIn" value={checkIn} />
         <input type="hidden" name="checkOut" value={checkOut} />
+        <input type="hidden" name="guests" value={guests} />
 
         <p className="text-center text-sm text-header/70">
           {valid
@@ -222,17 +256,6 @@ export default function BookingForm({ disabledRanges, pricing }: Props) {
               required
               className={inputClass}
             />
-            <label className="flex items-center justify-between gap-4 text-sm">
-              <span>{t("guests")}</span>
-              <input
-                type="number"
-                name="guests"
-                min={1}
-                max={20}
-                defaultValue={2}
-                className="w-20 rounded-md border border-header/20 bg-white p-2 focus:border-main focus:outline-none"
-              />
-            </label>
             <textarea
               name="message"
               rows={3}

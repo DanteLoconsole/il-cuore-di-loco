@@ -74,6 +74,7 @@ model PricingSettings {
   baseNightlyPrice        Int // whole euros, e.g. 100
   weekendSurchargePercent Int // e.g. 10 — applies Fri & Sat nights
   cleaningFee             Int // whole euros, e.g. 50
+  touristTaxPerPerson     Float    @default(1.5) // per person, per night — allows decimals unlike the fields above
   updatedAt               DateTime @updatedAt
 }
 

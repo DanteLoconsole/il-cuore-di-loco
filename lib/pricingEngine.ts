@@ -5,6 +5,7 @@ export type PricingConfig = {
   baseNightlyPrice: number;
   weekendSurchargePercent: number;
   cleaningFee: number;
+  touristTaxPerPerson: number; // per person, per night
 };
 
 export type SurchargePeriodData = {
@@ -23,6 +24,7 @@ export type StayTotal = {
   nights: StayNight[];
   subtotal: number;
   cleaningFee: number;
+  touristTax: number;
   total: number;
 };
 
@@ -76,10 +78,15 @@ export function computeNightlyPrice(
   return Math.round(price);
 }
 
-/** Sum of nightly prices for the half-open range [checkIn, checkOut) plus the cleaning fee. */
+/**
+ * Full price breakdown for the half-open range [checkIn, checkOut): nightly
+ * subtotal, cleaning fee, and the tourist tax (per person, per night — an
+ * Italian "tassa di soggiorno"), summed into the grand total.
+ */
 export function computeStayTotal(
   checkIn: Date,
   checkOut: Date,
+  guests: number,
   config: PricingConfig,
   surcharges: SurchargePeriodData[],
   overrides: PriceOverrideData[]
@@ -95,10 +102,14 @@ export function computeStayTotal(
     cursor.setDate(cursor.getDate() + 1);
   }
 
+  const touristTax =
+    Math.round(guests * nights.length * config.touristTaxPerPerson * 100) / 100;
+
   return {
     nights,
     subtotal,
     cleaningFee: config.cleaningFee,
-    total: subtotal + config.cleaningFee,
+    touristTax,
+    total: subtotal + config.cleaningFee + touristTax,
   };
 }
