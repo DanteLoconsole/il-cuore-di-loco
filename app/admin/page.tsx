@@ -199,7 +199,7 @@ export default async function AdminPage({
               href={newsletterMailto}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex rounded-md bg-main px-5 py-3 font-medium text-white transition-colors hover:bg-main-hover hover:no-underline!"
+              className="inline-flex px-5 font-medium"
             >
               Zend Nieuwsbrief Uit
             </a>
