@@ -50,6 +50,14 @@ model Booking {
   @@index([checkIn, checkOut])
 }
 
+// Newsletter subscribers captured from the homepage sign-up form.
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
 // Owner-blocked dates (self-use, maintenance, …). Same half-open range semantics.
 model BlockedRange {
   id        String   @id @default(cuid())

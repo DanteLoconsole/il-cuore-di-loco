@@ -2,10 +2,10 @@ import Script from "next/script";
 import Image from "next/image";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import Data from "@/app/data.json";
-import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/sectionHeading";
 import Reveal from "@/components/reveal";
 import ScrollUp from "@/components/scrollUp";
+import NewsletterForm from "@/components/newsletterForm";
 
 export default function HomePage() {
   return (
@@ -77,23 +77,7 @@ export default function HomePage() {
           <p className="mt-4 text-header/70">
             Schrijf je in op onze nieuwsbrief en mis niets.
           </p>
-          <form className="mt-6 flex flex-col gap-4 text-left">
-            <input
-              type="text"
-              placeholder="Naam"
-              required
-              className="rounded-md border border-header/20 bg-white p-3 text-[0.95rem] focus:border-main focus:outline-none"
-            />
-            <input
-              type="email"
-              placeholder="E-mailadres"
-              required
-              className="rounded-md border border-header/20 bg-white p-3 text-[0.95rem] focus:border-main focus:outline-none"
-            />
-            <Button type="submit" className="p-4">
-              Inschrijven
-            </Button>
-          </form>
+          <NewsletterForm />
         </Reveal>
       </section>
 

@@ -56,10 +56,19 @@ export default async function AdminPage({
 }) {
   const { conflict } = await searchParams;
 
-  const [bookings, blocks] = await Promise.all([
+  const [bookings, blocks, subscribers] = await Promise.all([
     prisma.booking.findMany({ orderBy: { createdAt: "desc" } }),
     prisma.blockedRange.findMany({ orderBy: { startDate: "asc" } }),
+    prisma.newsletterSubscriber.findMany({ orderBy: { createdAt: "desc" } }),
   ]);
+
+  // "Send newsletter" opens the mail app with every subscriber in BCC and no
+  // visible To — the standard way to send a bulk mail without exposing
+  // addresses to each other. The From address is whatever account the mail
+  // app sends as; a mailto: link cannot set that.
+  const bcc = subscribers.map((s) => s.email).join(",");
+  const subject = encodeURIComponent("Nieuwsbrief Il Cuore di Loco");
+  const newsletterMailto = `mailto:?bcc=${bcc}&subject=${subject}`;
 
   const pending = bookings.filter((b) => b.status === "PENDING");
   const confirmed = bookings.filter((b) => b.status === "CONFIRMED");
@@ -175,6 +184,26 @@ export default async function AdminPage({
             ))}
           </div>
           <BlockDatesForm />
+        </section>
+
+        {/* Newsletter */}
+        <section>
+          <h3 className="mb-4 text-lg font-bold text-header">
+            Nieuwsbrief ({subscribers.length}{" "}
+            {subscribers.length === 1 ? "inschrijving" : "inschrijvingen"})
+          </h3>
+          {subscribers.length === 0 ? (
+            <p className="text-header/70">Nog geen inschrijvingen.</p>
+          ) : (
+            <a
+              href={newsletterMailto}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex rounded-md bg-main px-5 py-3 font-medium text-white transition-colors hover:bg-main-hover hover:no-underline!"
+            >
+              Zend Nieuwsbrief Uit
+            </a>
+          )}
         </section>
 
         {/* Declined / cancelled (compact) */}
