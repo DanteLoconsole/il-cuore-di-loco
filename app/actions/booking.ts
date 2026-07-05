@@ -2,9 +2,11 @@
 
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { isRangeAvailable, toUTCDate } from "@/lib/availability";
+import { getPricingData } from "@/lib/pricing";
+import { sendBookingRequestEmails } from "@/lib/email";
 
 export type BookingState = { error?: string; success?: boolean } | undefined;
 
@@ -60,7 +62,21 @@ export async function submitBookingRequest(
     },
   });
 
-  revalidatePath("/info");
+  revalidatePath("/booking");
   revalidatePath("/admin");
+
+  const [locale, pricing] = await Promise.all([getLocale(), getPricingData()]);
+  await sendBookingRequestEmails({
+    locale,
+    guestName: parsed.data.guestName,
+    email: parsed.data.email,
+    phone: parsed.data.phone,
+    guests: parsed.data.guests,
+    message: parsed.data.message,
+    checkIn,
+    checkOut,
+    pricing,
+  });
+
   return { success: true };
 }

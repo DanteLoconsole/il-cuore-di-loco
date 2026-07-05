@@ -33,6 +33,7 @@
     "react-image-gallery": "1.4.0",
     "react-scroll-to-top": "3.1.0",
     "react-vertical-timeline-component": "3.5.3",
+    "resend": "^6.17.1",
     "tailwind-merge": "3.3.1",
     "tailwindcss": "4.1.11",
     "zod": "^4.4.3"

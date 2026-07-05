@@ -5,7 +5,8 @@
   },
   "nav": {
     "home": "Home",
-    "info": "Info & booking",
+    "info": "Info",
+    "booking": "Booking",
     "gallery": "Gallery",
     "story": "Our story",
     "activities": "What to do?",
@@ -117,10 +118,43 @@
     "mapTitle": "Map"
   },
   "info": {
-    "heading": "Info & booking",
-    "intro": "Choose your arrival and departure dates in the calendar — greyed-out dates are unavailable. Then send a no-obligation request; we'll confirm your booking as soon as possible."
+    "heading": "Practical information",
+    "intro": "Everything you need to know about your stay at Il Cuore di Loco.",
+    "facts": [
+      {
+        "title": "Bedrooms",
+        "description": "2 bedrooms: one double bed and one single sofa bed (max. 3 guests)."
+      },
+      {
+        "title": "Linens & towels",
+        "description": "Bed linens and towels are provided — you don't need to bring your own."
+      },
+      {
+        "title": "Layout",
+        "description": "Bathroom, kitchen and bedroom on the ground floor; upstairs a cosy living room with a single bedroom. Enjoy our terrace too."
+      },
+      {
+        "title": "Breakfast",
+        "description": "Breakfast is not included — the kitchen is fully equipped to cook for yourself."
+      },
+      {
+        "title": "Cleaning",
+        "description": "The accommodation is cleaned every 4 days, and always thoroughly between stays."
+      },
+      {
+        "title": "Key",
+        "description": "You'll get a unique code to check yourself in and out — we send it shortly before arrival via WhatsApp or text message."
+      },
+      {
+        "title": "Check-in & check-out",
+        "description": "Check-in from 12pm. Check-out before 10am."
+      }
+    ],
+    "bookCta": "Check availability and book now"
   },
   "booking": {
+    "heading": "Book your stay",
+    "intro": "Choose your arrival and departure dates in the calendar — greyed-out dates are unavailable. Then send a no-obligation request; we'll confirm your booking as soon as possible.",
     "selectDates": "Select your arrival and departure dates in the calendar.",
     "nights": "{count, plural, one {# night} other {# nights}}: {range}",
     "request": "Request Now",
@@ -149,6 +183,21 @@
     "submit": "Log in",
     "submitting": "Working…",
     "error": "Email address or password is incorrect."
+  },
+  "email": {
+    "guestSubject": "Confirmation of your request at Il Cuore di Loco",
+    "guestGreeting": "Hi {name},",
+    "guestIntro": "Thank you for your request! We've received it and will get in touch as soon as possible to confirm your stay.",
+    "guestOutro": "See you soon at Il Cuore di Loco!",
+    "ownerSubject": "New booking request from {name}",
+    "ownerIntro": "A new booking request has come in:",
+    "summaryHeading": "Request summary",
+    "datesLabel": "Dates",
+    "nameLabel": "Name",
+    "emailLabel": "Email address",
+    "phoneLabel": "Phone number",
+    "messageLabel": "Message",
+    "signature": "Kind regards,\nIl Cuore di Loco"
   },
   "footer": {
     "rights": "© {year} <link>Dante Loconsole</link>, Inc. All rights reserved."

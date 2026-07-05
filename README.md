@@ -8,11 +8,21 @@ Website for **Il Cuore di Loco**, a B&B in Locorotondo (Puglia, Italy). Built wi
 ## Features
 
 - Marketing pages: home, activities, story, gallery, contact — trilingual (nl/en/it).
-- **Booking requests**: visitors pick dates on `/info` and submit a request (name, email,
-  phone, guests, message) — no account needed.
+- **Info** (`/info`) — property details (bedrooms, linens, layout, breakfast, cleaning
+  schedule, key handover, check-in/out times).
+- **Booking requests** (`/booking`): visitors pick dates and submit a request (name, email,
+  phone, guests — capped at 3, message) — no account needed. The calendar shows the price
+  under each night and a live summary (nights subtotal, cleaning fee, tourist tax, total).
+- **Per-night pricing**, fully owner-configurable from `/admin`: a base nightly rate, a
+  weekend surcharge (Fri/Sat nights), owner-defined surcharge periods (e.g. high season) that
+  stack multiplicatively, one-off per-day price overrides, and a per-person/per-night tourist
+  tax — see [`lib/pricingEngine.ts`](lib/pricingEngine.ts) for the exact rules.
+- **Booking request emails** via [Resend](https://resend.com): the guest gets a confirmation
+  and the owner gets a notification, both with a price summary, in the locale the request was
+  submitted in. See [`lib/email.ts`](lib/email.ts).
 - **Admin dashboard** (`/admin`, owner-only login): accept/decline booking requests, cancel
-  confirmed bookings, block/unblock date ranges, and send a newsletter blast (opens your mail
-  app with all subscribers in BCC).
+  confirmed bookings, block/unblock date ranges, manage pricing (above), and send a newsletter
+  blast (opens your mail app with all subscribers in BCC).
 - **Newsletter sign-up** on the homepage, stored in the database.
 
 ## Tech stack
@@ -54,7 +64,9 @@ Copy [`.env.example`](.env.example) to `.env` and fill in:
 | `POSTGRES_PRISMA_URL` | Pooled connection string, used at runtime. |
 | `POSTGRES_URL_NON_POOLING` | Direct connection string, used for migrations. |
 | `AUTH_SECRET` | Signs auth sessions. Generate with `npx auth secret`. |
-| `OWNER_EMAIL`, `OWNER_PASSWORD`, `OWNER_NAME` | Credentials for the admin account created by `npm run db:seed`. |
+| `OWNER_EMAIL`, `OWNER_PASSWORD`, `OWNER_NAME` | Credentials for the admin account created by `npm run db:seed`. `OWNER_EMAIL` also receives new-booking-request notification emails. |
+| `RESEND_API_KEY` | Sends the booking request emails (guest confirmation + owner notification). Optional — if unset, booking requests still work and email sending is just skipped (logged as an error). |
+| `RESEND_FROM_EMAIL` | The "from" address for those emails, e.g. `no-reply@ilcuorediloco.it`. Requires verifying that domain in Resend. |
 
 If your Postgres provider names its connection strings differently (e.g. Neon's own
 integration may produce `DATABASE_URL` / `DATABASE_URL_UNPOOLED`), either rename them to
@@ -83,10 +95,11 @@ app/
     story/            # our story timeline
     gallery/          # photo gallery
     contact/          # contact info + map
-    info/             # booking calendar + request form
+    info/             # property details (rooms, breakfast, cleaning, key handover, …)
+    booking/          # booking calendar + request form
     login/            # admin login
     admin/            # owner-only dashboard (protected by admin/layout.tsx)
-  actions/            # server actions (booking, admin, newsletter)
+  actions/            # server actions (booking, admin, pricing, newsletter)
   api/auth/           # Auth.js route handler
   layout.tsx          # root <html>/<body>, locale comes from next-intl
 messages/             # nl.json / en.json / it.json — all translated UI strings + copy
@@ -94,12 +107,16 @@ i18n/                 # next-intl routing, navigation, and request config
 lib/
   prisma.ts           # Prisma client singleton
   availability.ts     # booking overlap / availability logic
+  pricingEngine.ts    # pure pricing math — no Prisma import, safe for client components
+  pricing.ts          # server-only Prisma reads for pricing (mirrors availability.ts)
+  email.ts            # Resend booking-request emails (guest confirmation + owner notice)
   content.ts          # non-translated content (image paths)
 components/           # shared UI (header, footer, forms, etc.)
 prisma/
   schema.prisma       # data model
   migrations/          # SQL migration history
   seed.ts             # creates the owner account
+types/                # ambient type augmentations (e.g. next-auth.d.ts)
 middleware.ts         # next-intl locale detection & routing
 auth.ts               # Auth.js configuration (credentials provider)
 ```
@@ -112,6 +129,10 @@ Defined in [`prisma/schema.prisma`](prisma/schema.prisma):
 - **Booking** — a guest's request (`PENDING` → `CONFIRMED` or `CANCELLED` by the owner).
 - **BlockedRange** — dates the owner blocks manually (maintenance, personal use, etc.).
 - **NewsletterSubscriber** — homepage newsletter sign-ups.
+- **PricingSettings** — singleton row: base nightly price, weekend surcharge %, cleaning fee,
+  tourist tax per person/night.
+- **SurchargePeriod** — owner-defined date ranges with a surcharge % (e.g. high season).
+- **PriceOverride** — an exact price for one specific date, overriding the computed price.
 
 After changing `schema.prisma`, run `npm run db:migrate` to create a migration and apply it
 locally.
@@ -132,5 +153,7 @@ The project is set up for [Vercel](https://vercel.com):
 2. Add `AUTH_SECRET` and the `OWNER_*` variables in Vercel's Environment Variables settings.
 3. Run `npm run db:migrate` once against the production database (or `db:deploy` in CI) and
    `npm run db:seed` to create the owner account.
-4. Push to your connected branch — Vercel builds with `npm run build`, which runs
+4. Optional: add `RESEND_API_KEY` and `RESEND_FROM_EMAIL` to enable booking request emails —
+   see the [Environment variables](#environment-variables) section above.
+5. Push to your connected branch — Vercel builds with `npm run build`, which runs
    `prisma generate` before `next build`.

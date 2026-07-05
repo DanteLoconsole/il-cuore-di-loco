@@ -20,7 +20,7 @@ async function requireOwner() {
 
 function revalidateBookingViews() {
   revalidatePath("/admin");
-  revalidatePath("/info");
+  revalidatePath("/booking");
 }
 
 /** Accept a pending request → CONFIRMED (blocks the dates). Guards against conflicts. */

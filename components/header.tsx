@@ -12,6 +12,7 @@ import LanguageSwitcher from "@/components/languageSwitcher";
 const navItems = [
   { key: "home", href: "/" },
   { key: "info", href: "/info" },
+  { key: "booking", href: "/booking" },
   { key: "gallery", href: "/gallery" },
   { key: "story", href: "/story" },
   { key: "activities", href: "/activities" },

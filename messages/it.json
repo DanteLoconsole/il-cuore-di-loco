@@ -5,7 +5,8 @@
   },
   "nav": {
     "home": "Home",
-    "info": "Info e prenotazioni",
+    "info": "Info",
+    "booking": "Prenota",
     "gallery": "Galleria",
     "story": "La nostra storia",
     "activities": "Cosa fare?",
@@ -117,10 +118,43 @@
     "mapTitle": "Mappa"
   },
   "info": {
-    "heading": "Info e prenotazioni",
-    "intro": "Scegli le date di arrivo e partenza nel calendario — le date in grigio non sono disponibili. Poi invia una richiesta senza impegno; confermeremo la tua prenotazione il prima possibile."
+    "heading": "Informazioni pratiche",
+    "intro": "Tutto quello che devi sapere sul tuo soggiorno a Il Cuore di Loco.",
+    "facts": [
+      {
+        "title": "Camere da letto",
+        "description": "2 camere da letto: un letto matrimoniale e un divano letto singolo (max. 3 ospiti)."
+      },
+      {
+        "title": "Lenzuola e asciugamani",
+        "description": "Lenzuola e asciugamani sono forniti — non devi portare i tuoi."
+      },
+      {
+        "title": "Disposizione",
+        "description": "Bagno, cucina e camera da letto al piano terra; al piano superiore un accogliente soggiorno con una camera singola. Goditi anche la nostra terrazza."
+      },
+      {
+        "title": "Colazione",
+        "description": "La colazione non è inclusa — la cucina è completamente attrezzata per cucinare da soli."
+      },
+      {
+        "title": "Pulizie",
+        "description": "L'alloggio viene pulito ogni 4 giorni, e sempre a fondo tra un soggiorno e l'altro."
+      },
+      {
+        "title": "Chiave",
+        "description": "Riceverai un codice unico per il check-in e il check-out autonomi — te lo inviamo poco prima dell'arrivo via WhatsApp o SMS."
+      },
+      {
+        "title": "Check-in e check-out",
+        "description": "Check-in dalle 12:00. Check-out entro le 10:00."
+      }
+    ],
+    "bookCta": "Verifica la disponibilità e prenota ora"
   },
   "booking": {
+    "heading": "Prenota il tuo soggiorno",
+    "intro": "Scegli le date di arrivo e partenza nel calendario — le date in grigio non sono disponibili. Poi invia una richiesta senza impegno; confermeremo la tua prenotazione il prima possibile.",
     "selectDates": "Seleziona le date di arrivo e partenza nel calendario.",
     "nights": "{count, plural, one {# notte} other {# notti}}: {range}",
     "request": "Richiedi Ora",
@@ -149,6 +183,21 @@
     "submit": "Accedi",
     "submitting": "Attendere…",
     "error": "Indirizzo email o password non corretti."
+  },
+  "email": {
+    "guestSubject": "Conferma della tua richiesta a Il Cuore di Loco",
+    "guestGreeting": "Ciao {name},",
+    "guestIntro": "Grazie per la tua richiesta! L'abbiamo ricevuta e ti contatteremo il prima possibile per confermare il tuo soggiorno.",
+    "guestOutro": "A presto a Il Cuore di Loco!",
+    "ownerSubject": "Nuova richiesta di prenotazione da {name}",
+    "ownerIntro": "È arrivata una nuova richiesta di prenotazione:",
+    "summaryHeading": "Riepilogo della richiesta",
+    "datesLabel": "Date",
+    "nameLabel": "Nome",
+    "emailLabel": "Indirizzo email",
+    "phoneLabel": "Numero di telefono",
+    "messageLabel": "Messaggio",
+    "signature": "Cordiali saluti,\nIl Cuore di Loco"
   },
   "footer": {
     "rights": "© {year} <link>Dante Loconsole</link>, Inc. Tutti i diritti riservati."

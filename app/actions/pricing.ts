@@ -19,7 +19,7 @@ async function requireOwner() {
 
 function revalidatePricingViews() {
   revalidatePath("/admin");
-  revalidatePath("/info");
+  revalidatePath("/booking");
 }
 
 const settingsSchema = z.object({

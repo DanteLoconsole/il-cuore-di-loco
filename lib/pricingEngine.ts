@@ -50,6 +50,21 @@ function toIsoDate(date: Date): string {
 }
 
 /**
+ * Converts a UTC-midnight Date (e.g. from `toUTCDate` in lib/availability.ts)
+ * into a local-midnight Date representing the same calendar day. Server-side
+ * callers of this module (e.g. computing a price for an email) must use this
+ * first — the functions above read local getters, which only agree with a
+ * UTC-midnight Date if the process's local timezone happens to be UTC.
+ */
+export function toLocalMidnight(utcDate: Date): Date {
+  return new Date(
+    utcDate.getUTCFullYear(),
+    utcDate.getUTCMonth(),
+    utcDate.getUTCDate()
+  );
+}
+
+/**
  * Nightly price for a single date. An override always wins; otherwise the
  * base rate is multiplied by the weekend surcharge (if applicable) and every
  * matching surcharge period, each stacking as an independent × (1 + pct/100).

@@ -44,7 +44,7 @@ export default async function ActivitiesPage({
                 href={activitiesInfoLink}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-5 inline-flex w-fit rounded-md bg-main px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-main-hover hover:no-underline!"
+                className="mt-5 inline-flex w-fit rounded-md bg-main px-4 py-2 text-sm font-medium !text-white transition-colors hover:bg-main-hover hover:no-underline!"
               >
                 {t("readMore")}
               </a>

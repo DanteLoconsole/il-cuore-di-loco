@@ -5,7 +5,8 @@
   },
   "nav": {
     "home": "Home",
-    "info": "Info & boeken",
+    "info": "Info",
+    "booking": "Boeken",
     "gallery": "Galerij",
     "story": "Verhaal",
     "activities": "Wat te doen?",
@@ -117,10 +118,43 @@
     "mapTitle": "Kaart"
   },
   "info": {
-    "heading": "Info & boeken",
-    "intro": "Kies je aankomst- en vertrekdatum in de kalender — grijze data zijn niet beschikbaar. Vraag daarna vrijblijvend je verblijf aan; we bevestigen je boeking zo snel mogelijk."
+    "heading": "Praktische informatie",
+    "intro": "Alles wat je moet weten over je verblijf in Il Cuore di Loco.",
+    "facts": [
+      {
+        "title": "Slaapkamers",
+        "description": "2 slaapkamers: een tweepersoonsbed en een eenpersoons slaapbank (max. 3 gasten)."
+      },
+      {
+        "title": "Lakens & handdoeken",
+        "description": "Bedlinnen en handdoeken zijn voorzien — je hoeft zelf niets mee te brengen."
+      },
+      {
+        "title": "Indeling",
+        "description": "Badkamer, keuken en slaapkamer op de benedenverdieping; boven een gezellige zithoek met een eenpersoonsslaapkamer. Geniet ook van ons terras."
+      },
+      {
+        "title": "Ontbijt",
+        "description": "Ontbijt is niet inbegrepen — de keuken is volledig uitgerust om zelf te koken."
+      },
+      {
+        "title": "Schoonmaak",
+        "description": "De accommodatie wordt om de 4 dagen gepoetst, en telkens grondig tussen twee verblijven door."
+      },
+      {
+        "title": "Sleutel",
+        "description": "Je krijgt een unieke code om zelf in- en uit te checken — we sturen die kort voor aankomst via WhatsApp of sms door."
+      },
+      {
+        "title": "In- en uitchecken",
+        "description": "Inchecken vanaf 12u. Uitchecken voor 10u."
+      }
+    ],
+    "bookCta": "Bekijk beschikbaarheid en boek nu"
   },
   "booking": {
+    "heading": "Boek je verblijf",
+    "intro": "Kies je aankomst- en vertrekdatum in de kalender — grijze data zijn niet beschikbaar. Vraag daarna vrijblijvend je verblijf aan; we bevestigen je boeking zo snel mogelijk.",
     "selectDates": "Selecteer je aankomst- en vertrekdatum in de kalender.",
     "nights": "{count, plural, one {# nacht} other {# nachten}}: {range}",
     "request": "Vraag Nu Aan",
@@ -149,6 +183,21 @@
     "submit": "Inloggen",
     "submitting": "Bezig…",
     "error": "E-mailadres of wachtwoord is onjuist."
+  },
+  "email": {
+    "guestSubject": "Bevestiging van je aanvraag bij Il Cuore di Loco",
+    "guestGreeting": "Hoi {name},",
+    "guestIntro": "Bedankt voor je aanvraag! We hebben ze goed ontvangen en nemen zo snel mogelijk contact met je op om je verblijf te bevestigen.",
+    "guestOutro": "Tot binnenkort in Il Cuore di Loco!",
+    "ownerSubject": "Nieuwe boekingsaanvraag van {name}",
+    "ownerIntro": "Er is een nieuwe boekingsaanvraag binnengekomen:",
+    "summaryHeading": "Overzicht van de aanvraag",
+    "datesLabel": "Data",
+    "nameLabel": "Naam",
+    "emailLabel": "E-mailadres",
+    "phoneLabel": "Telefoonnummer",
+    "messageLabel": "Bericht",
+    "signature": "Met vriendelijke groeten,\nIl Cuore di Loco"
   },
   "footer": {
     "rights": "© {year} <link>Dante Loconsole</link>, Inc. Alle rechten voorbehouden."
