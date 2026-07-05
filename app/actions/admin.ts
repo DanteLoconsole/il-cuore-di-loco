@@ -31,7 +31,7 @@ export async function acceptBooking(formData: FormData): Promise<void> {
   const booking = await prisma.booking.findUnique({ where: { id } });
   if (!booking || booking.status !== "PENDING") return;
 
-  if (await hasConflict(booking.checkIn, booking.checkOut)) {
+  if (await hasConflict(booking.checkIn, booking.checkOut, booking.id)) {
     const locale = await getLocale();
     redirect(`/${locale}/admin?conflict=1`);
   }

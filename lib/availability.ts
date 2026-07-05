@@ -25,11 +25,20 @@ export function rangesOverlap(
   return aStart < bEnd && bStart < aEnd;
 }
 
-/** All occupied ranges (confirmed bookings + owner blocks) as half-open [start, end). */
-async function getOccupiedRanges(): Promise<OccupiedRange[]> {
+/**
+ * All occupied ranges (pending + confirmed bookings, and owner blocks) as
+ * half-open [start, end). Pending requests hold the dates too, so two guests
+ * can't both request the same nights while the owner is deciding on the
+ * first one; `excludeId` lets a booking ignore its own hold when re-checking
+ * itself (e.g. on accept).
+ */
+async function getOccupiedRanges(excludeId?: string): Promise<OccupiedRange[]> {
   const [bookings, blocks] = await Promise.all([
     prisma.booking.findMany({
-      where: { status: "CONFIRMED" },
+      where: {
+        status: { in: ["PENDING", "CONFIRMED"] },
+        ...(excludeId ? { id: { not: excludeId } } : {}),
+      },
       select: { checkIn: true, checkOut: true },
     }),
     prisma.blockedRange.findMany({ select: { startDate: true, endDate: true } }),
@@ -65,12 +74,17 @@ export async function isRangeAvailable(
   );
 }
 
-/** Does this range overlap an already-confirmed booking or owner block? */
+/**
+ * Does this range overlap another pending/confirmed booking or owner block?
+ * Pass `excludeId` when re-checking a booking against everything else (e.g.
+ * on accept), so it doesn't conflict with its own hold on the dates.
+ */
 export async function hasConflict(
   checkIn: Date,
-  checkOut: Date
+  checkOut: Date,
+  excludeId?: string
 ): Promise<boolean> {
-  const occupied = await getOccupiedRanges();
+  const occupied = await getOccupiedRanges(excludeId);
   return occupied.some(({ start, end }) =>
     rangesOverlap(checkIn, checkOut, start, end)
   );

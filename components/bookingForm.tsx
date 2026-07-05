@@ -142,9 +142,12 @@ export default function BookingForm({ disabledRanges, pricing }: Props) {
 
   if (state?.success) {
     return (
-      <div className="mx-auto max-w-md rounded-2xl bg-white p-8 text-center shadow-[0_2px_16px_rgba(0,0,0,0.12)]">
-        <p className="text-lg font-semibold text-main">{t("successTitle")}</p>
-        <p className="mt-3 text-header/70">{t("successText")}</p>
+      <div className="mx-auto max-w-md text-center">
+        <div className="rounded-2xl bg-white p-8 shadow-[0_2px_16px_rgba(0,0,0,0.12)]">
+          <p className="text-lg font-semibold text-main">{t("successTitle")}</p>
+          <p className="mt-3 text-header/70">{t("successText")}</p>
+        </div>
+        <p className="mt-4 text-sm text-header/70">{t("successEmailNote")}</p>
       </div>
     );
   }

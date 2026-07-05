@@ -167,6 +167,7 @@
     "submitting": "Working…",
     "successTitle": "Thank you for your request!",
     "successText": "We've received your request and will get in touch as soon as possible to confirm your booking.",
+    "successEmailNote": "You'll also receive an email with an overview of your request — if you don't see it, please check your spam folder.",
     "errorInvalid": "Please select valid dates and number of guests.",
     "errorUnavailable": "These dates are no longer available.",
     "priceSummaryHeading": "Price summary",

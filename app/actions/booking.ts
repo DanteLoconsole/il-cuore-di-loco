@@ -44,7 +44,7 @@ export async function submitBookingRequest(
   const checkIn = toUTCDate(parsed.data.checkIn);
   const checkOut = toUTCDate(parsed.data.checkOut);
 
-  // Reject dates that are already confirmed/blocked (pending requests don't block).
+  // Reject dates already held by a pending/confirmed booking or an owner block.
   if (!(await isRangeAvailable(checkIn, checkOut))) {
     return { error: t("errorUnavailable") };
   }
