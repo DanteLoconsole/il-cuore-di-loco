@@ -294,7 +294,7 @@ export default async function AdminPage({
               href={newsletterMailto}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex px-5 font-medium"
+              className="inline-flex px-5 font-medium !text-header/70 hover:!text-header"
             >
               {t("sendNewsletter")}
             </a>
